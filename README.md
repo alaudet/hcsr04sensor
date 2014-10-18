@@ -24,4 +24,4 @@ The module does the following;
 Usage
 =====
 
-See example scripts in https://github.com/alaudet/hcsr04sensor.git/examples
+See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/examples
