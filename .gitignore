@@ -1,4 +1,5 @@
 *.pyc
 *.sw*
 tests
-tests/*
+*egg-info
+dist
