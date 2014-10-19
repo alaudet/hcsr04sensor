@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import hcsr04sensor.pihcsr04 as sensor
+import hcsr04sensor.sensor as sensor
 
 
 def distance():
@@ -14,4 +14,4 @@ def distance():
 
 if __name__ == "__main__":
     distance = distance()
-    print "The measured distance is {} centimeters".format(distance)
+    print "Distance = {} centimeters".format(distance)

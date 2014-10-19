@@ -24,4 +24,7 @@ The module does the following;
 Usage
 =====
 
-See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/examples
+See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/examples.
+
+Access to Raspberry Pi GPIO pins require elevated priviledges.  Run example
+scripts with sudo.

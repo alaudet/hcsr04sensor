@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-
-import hcsr04sensor.pihcsr04 as sensor
+import hcsr04sensor.sensor as sensor
 
 
 def depth(hole_depth):
@@ -15,6 +14,6 @@ def depth(hole_depth):
     return hole_depth - distance
  
 if __name__ == "__main__":
-    hole_depth = 100
+    hole_depth = 89.7
     level = depth(float(hole_depth))
-    print "The water is {} centimeters deep".format(round(level, 1))
+    print "Liquid Depth = {} centimeters.".format(round(level, 1))
