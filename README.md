@@ -8,7 +8,7 @@ Raspberry Pi.
 Install
 =======
 
-    pip install hcsr04sensor
+    sudo pip install hcsr04sensor
 
 Description
 ===========
