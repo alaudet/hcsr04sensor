@@ -16,4 +16,4 @@ def depth(hole_depth):
 if __name__ == "__main__":
     hole_depth = 89.7
     level = depth(float(hole_depth))
-    print "Liquid Depth = {} centimeters.".format(round(level, 1))
+    print "Liquid Depth = {} centimeters.".format(level)

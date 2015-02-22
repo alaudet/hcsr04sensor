@@ -1,2 +1,5 @@
+Version 1.0.3
+Small change to example script depth.py
+
 Version 1.0.2
 -Fix bug introduced with version 0.5.11 of RPi.GPIO
