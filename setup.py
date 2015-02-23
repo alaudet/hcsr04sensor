@@ -1,10 +1,10 @@
 from setuptools import setup
 
-version = '1.0.3'
+version = '2.0.0b'
 
 setup(name='hcsr04sensor',
       version=version,
-      description='Simple module to access HCSR04 sensor on RaspiPi',
+      description='Module to access the HCSR04 sensor on a Raspberry Pi',
       long_description=open("./README.md", "r").read(),
       classifiers=[
           "Development Status :: 5 - Production/Stable",

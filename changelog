@@ -1,3 +1,7 @@
+Version 2.0.0
+Module expanded to allow metric or imperial readings.
+See examples/examples.py for usage
+
 Version 1.0.3
 Small change to example script depth.py
 

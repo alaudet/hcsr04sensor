@@ -1,8 +1,7 @@
 HC-SR04 Ultrasonic Sensor on Raspberry Pi
 =========================================
 
-A simple module for calculating distance in centimeters, using an HC-SR04 sensor and a
-Raspberry Pi.
+A simple module for calculating distance and depth measurements with and HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
 
 
 Install
@@ -20,6 +19,10 @@ The module does the following;
 * Rounds the value to a specified decimal place.
 
 * Adjusts the reading based on temperature by adjusting the speed of sound.
+
+* Allows measuring distance and depth in metric and imperial units.  See;
+
+    pydoc hcsr04sensor.sensor
 
 Usage
 =====
