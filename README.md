@@ -1,7 +1,7 @@
 HC-SR04 Ultrasonic Sensor on Raspberry Pi
 =========================================
 
-A simple module for calculating distance and depth measurements with and HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
+A simple module for calculating distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
 
 
 Install

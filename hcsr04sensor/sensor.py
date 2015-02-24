@@ -9,17 +9,23 @@ import RPi.GPIO as GPIO
 
 
 class Measurement(object):
-    '''Create a measurement using an HC-SR04 Ultrasonic Sensor connected to 
+    '''Create a measurement using an HC-SR04 Ultrasonic Sensor connecte 
     the GPIO pins of a Raspberry Pi.'''
-    def __init__(self, trig_pin, echo_pin, temperature):
+    def __init__(self, trig_pin, echo_pin, temperature, unit):
         self.trig_pin = trig_pin
         self.echo_pin = echo_pin
         self.temperature = temperature
+        self.unit = unit
 
     def raw_distance(self):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of 11 readings.'''
+        if self.unit != 'metric' and self.unit != 'imperial':
+            print "Unit type Error: Unit must be imperial or metric"
+            exit(0)
+        if self.unit == 'imperial':
+            self.temperature = (self.temperature - 32) * 0.5556
         speed_of_sound = 331.3 * math.sqrt(1+(self.temperature / 273.15))
         sample = []
         for distance_reading in range(11):
@@ -44,25 +50,25 @@ class Measurement(object):
         return sorted_sample[5]
 
 
-def depth_metric(med_reading, hole_depth, round_to):
+def depth_metric(median_reading, hole_depth, round_to):
     '''Calculate the rounded metric depth of a liquid. hole_depth is the
     distance, in cm's, from the sensor to the bottom of the hole.'''
-    return round(hole_depth - med_reading, round_to)
+    return round(hole_depth - median_reading, round_to)
 
 
-def depth_imperial(med_reading, hole_depth, round_to):
+def depth_imperial(median_reading, hole_depth, round_to):
     '''Calculate the rounded imperial depth of a liquid. hole_depth is the
     distance, in inches, from the sensor to the bottom of the hole.'''
-    return round(hole_depth - (med_reading * 0.394), round_to)
+    return round(hole_depth - (median_reading * 0.394), round_to)
 
 
-def distance_metric(med_reading, round_to):
+def distance_metric(median_reading, round_to):
     '''Calculate the rounded metric distance, in cm's, from the sensor
     to an object'''
-    return round(med_reading, round_to)
+    return round(median_reading, round_to)
 
 
-def distance_imperial(med_reading, round_to):
+def distance_imperial(median_reading, round_to):
     '''Calculate the rounded imperial distance, in inches, from the sensor
     to an oject.'''
-    return round(med_reading * 0.394, round_to)
+    return round(median_reading * 0.394, round_to)
