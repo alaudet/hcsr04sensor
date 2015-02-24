@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 
 
 class Measurement(object):
-    '''Create a measurement using an HC-SR04 Ultrasonic Sensor connecte 
+    '''Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
     the GPIO pins of a Raspberry Pi.'''
     def __init__(self, trig_pin, echo_pin, temperature, unit):
         self.trig_pin = trig_pin
