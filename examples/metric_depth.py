@@ -11,14 +11,13 @@ def main():
     hole_depth = 80  # centimeters
 
     # Create a distance reading with the hcsr04 sensor module
-    value = sensor.Measurement(trig_pin, echo_pin, temperature, unit)
+    value = sensor.Measurement(trig_pin, echo_pin, temperature, unit, round_to)
     raw_measurement = value.raw_distance()
 
     # Calculate the liquid depth, in centimeters, of a hole filled
     # with liquid
-    print "Depth = {} centimeters".format(
-        sensor.depth_metric(raw_measurement, hole_depth, round_to)
-        )
+    liquid_depth = value.depth_metric(raw_measurement, hole_depth)
+    print "Depth = {} centimeters".format(liquid_depth)
 
 if __name__ == "__main__":
     main()
