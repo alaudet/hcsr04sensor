@@ -1,5 +1,6 @@
-# simple module for measuring distance with an Ultrasonic sound sensor
-# and a Raspberry Pi
+''' Module for measuring distance or depth with an HCSRO4 Ultrasonic sound 
+sensor and a Raspberry Pi.  Imperial and Metric measurements are available'''
+
 # Al Audet
 # MIT License
 
@@ -23,7 +24,7 @@ class Measurement(object):
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of 11 readings.'''
         if self.unit != 'metric' and self.unit != 'imperial':
-            print "Unit type Error: Unit must be imperial or metric"
+            print "Unit Type Error: Unit must be imperial or metric"
             exit(0)
         if self.unit == 'imperial':
             self.temperature = (self.temperature - 32) * 0.5556

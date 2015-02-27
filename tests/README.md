@@ -1,0 +1,4 @@
+Usage
+=====
+
+    sudo nosetests
