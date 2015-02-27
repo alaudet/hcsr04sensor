@@ -1,5 +1,4 @@
 *.pyc
 *.sw*
-tests
 *egg-info
 dist
