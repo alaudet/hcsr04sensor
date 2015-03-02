@@ -23,11 +23,15 @@ class Measurement(object):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of 11 readings.'''
-        if self.unit != 'metric' and self.unit != 'imperial':
-            print "Unit Type Error: Unit must be imperial or metric"
-            exit(0)
+      
         if self.unit == 'imperial':
             self.temperature = (self.temperature - 32) * 0.5556
+        elif self.unit == 'metric':
+            pass
+        else:
+            raise ValueError(
+                'Wrong Unit Type. Unit Must be imperial or metric')
+
         speed_of_sound = 331.3 * math.sqrt(1+(self.temperature / 273.15))
         sample = []
         for distance_reading in range(11):
