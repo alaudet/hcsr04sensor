@@ -1,3 +1,9 @@
+Changelog
+=========
+
+Version 1.1.2 
+Improved error handling in sensor.py
+
 Version 1.1.1
 All functions in sensor.py now methods of Measurement class
 

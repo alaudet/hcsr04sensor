@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.1.1'
+version = '1.1.2'
 
 setup(name='hcsr04sensor',
       version=version,
@@ -12,6 +12,7 @@ setup(name='hcsr04sensor',
           "Intended Audience :: End Users/Desktop",
           "Natural Language :: English",
           "Operating System :: POSIX :: Linux",
+          "Programming Language :: Python :: 2 :: Only",
           "Programming Language :: Python :: 2.7",
           "Topic :: Home Automation",
           "License :: OSI Approved :: MIT License",
@@ -19,7 +20,7 @@ setup(name='hcsr04sensor',
       author='Al Audet',
       author_email='alaudet@linuxnorth.org',
       url='https://github.com/alaudet/hcsr04sensor',
-      download_url='https://github.com/alaudet/hcsr04sensor',
+      download_url='https://github.com/alaudet/hcsr04sensor/releases',
       license='MIT License',
       packages=['hcsr04sensor'],
       install_requires=['RPi.GPIO']
