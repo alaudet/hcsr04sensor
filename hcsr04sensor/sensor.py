@@ -51,7 +51,8 @@ class Measurement(object):
             time_passed = sonar_signal_on - sonar_signal_off
             distance_cm = time_passed * ((speed_of_sound * 100) / 2)
             sample.append(distance_cm)
-            GPIO.cleanup()
+            # Only cleanup the pins used to prevent clobbering any others in use by the program
+            GPIO.cleanup(self.trig_pin, self.echo_pin) 
         sorted_sample = sorted(sample)
         return sorted_sample[5]
 
