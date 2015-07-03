@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.1.3b'
+version = '1.1.3'
 
 setup(name='hcsr04sensor',
       version=version,
