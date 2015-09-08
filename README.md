@@ -14,7 +14,11 @@ Description
 The module does the following;
 
 * Returns an error corrected distance by using the median reading of a sorted
-  sample.  
+  sample. NOTE - The default sample size is 11 readings.  You can specify a
+  different sample size by passing sample_size=x  to raw_distance (where x is your desired
+  number of readings).  This is useful if you need to lower the sample size to take
+  quicker readings.  Beware that the probability of getting erroneous readings
+  increases as sample size is reduced.
 
 * Rounds the value to a specified decimal place.
 

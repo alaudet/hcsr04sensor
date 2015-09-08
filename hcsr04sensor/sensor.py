@@ -1,4 +1,4 @@
-''' Module for measuring distance or depth with an HCSRO4 Ultrasonic sound 
+'''Measure the distance or depth with an HCSR04 Ultrasonic sound 
 sensor and a Raspberry Pi.  Imperial and Metric measurements are available'''
 
 # Al Audet

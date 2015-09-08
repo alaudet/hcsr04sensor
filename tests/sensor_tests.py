@@ -3,7 +3,7 @@ import math
 from hcsr04sensor.sensor import Measurement
 
 TRIG_PIN = 17
-ECHO_PIN = 18
+ECHO_PIN = 27
 
 def test_measurement():
     value = Measurement(17, 27, 20, 'metric', 1)
