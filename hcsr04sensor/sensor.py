@@ -19,10 +19,10 @@ class Measurement(object):
         self.unit = unit
         self.round_to = round_to
 
-    def raw_distance(self):
+    def raw_distance(self, sample_size=11):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
-        is the median value of a sample of 11 readings.'''
+        is the median value of a sample of `sample_size` readings.'''
       
         if self.unit == 'imperial':
             self.temperature = (self.temperature - 32) * 0.5556
@@ -34,7 +34,7 @@ class Measurement(object):
 
         speed_of_sound = 331.3 * math.sqrt(1+(self.temperature / 273.15))
         sample = []
-        for distance_reading in range(11):
+        for distance_reading in range(sample_size):
             GPIO.setwarnings(False)
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(self.trig_pin, GPIO.OUT)
@@ -55,7 +55,7 @@ class Measurement(object):
             GPIO.cleanup(self.trig_pin)
             GPIO.cleanup(self.echo_pin)
         sorted_sample = sorted(sample)
-        return sorted_sample[5]
+        return sorted_sample[sample_size / 2]
 
     def depth_metric(self, median_reading, hole_depth):
         '''Calculate the rounded metric depth of a liquid. hole_depth is the

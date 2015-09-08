@@ -2,6 +2,8 @@ from nose.tools import *
 import math
 from hcsr04sensor.sensor import Measurement
 
+TRIG_PIN = 17
+ECHO_PIN = 18
 
 def test_measurement():
     value = Measurement(17, 27, 20, 'metric', 1)
@@ -14,8 +16,8 @@ def test_measurement():
 
 
 def test_imperial_temperature_and_speed_of_sound():
-    value = Measurement(17, 27, 68, 'imperial', 1)
-    raw_measurement = value.raw_distance()
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
+    raw_measurement = value.raw_distance(sample_size=1)
     speed_of_sound = 331.3 * math.sqrt(1+(value.temperature / 273.15))
     
     assert_equal(value.temperature, 20.0016)
@@ -24,7 +26,7 @@ def test_imperial_temperature_and_speed_of_sound():
 
 
 def test_imperial_measurements():
-    value = Measurement(17, 27, 68, 'imperial', 1)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
     raw_measurement = 26.454564846
     hole_depth = 25
 
@@ -37,7 +39,7 @@ def test_imperial_measurements():
 
 
 def test_metric_measurements():
-    value = Measurement(17, 27, 20, 'metric', 1)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 1)
     raw_measurement = 48.80804985408
     hole_depth = 72
 
