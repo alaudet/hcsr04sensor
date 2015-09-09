@@ -6,7 +6,7 @@ TRIG_PIN = 17
 ECHO_PIN = 27
 
 def test_measurement():
-    value = Measurement(17, 27, 20, 'metric', 1)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 1)
 
     assert_equal(value.trig_pin, 17)
     assert_equal(value.echo_pin, 27)
@@ -17,7 +17,7 @@ def test_measurement():
 
 def test_imperial_temperature_and_speed_of_sound():
     value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
-    raw_measurement = value.raw_distance(sample_size=1)
+    raw_measurement = value.raw_distance()
     speed_of_sound = 331.3 * math.sqrt(1+(value.temperature / 273.15))
     
     assert_equal(value.temperature, 20.0016)
