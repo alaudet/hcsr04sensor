@@ -6,8 +6,8 @@ TRIG_PIN = 17
 ECHO_PIN = 27
 
 def test_measurement():
+    '''Assure object is being created properly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 1)
-
     assert_equal(value.trig_pin, 17)
     assert_equal(value.echo_pin, 27)
     assert_equal(value.temperature, 20)
@@ -16,16 +16,19 @@ def test_measurement():
 
 
 def test_imperial_temperature_and_speed_of_sound():
+    '''Test that after Fahrenheit is converted to Celsius that speed of sound is
+    calculated correctly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
     raw_measurement = value.raw_distance()
     speed_of_sound = 331.3 * math.sqrt(1+(value.temperature / 273.15))
-    
     assert_equal(value.temperature, 20.0016)
     assert type(raw_measurement) == float
     assert_equal(speed_of_sound, 343.21555930656075)
 
 
 def test_imperial_measurements():
+    '''Test that an imperial measurement is what you would expect with a precise
+    raw_measurement.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
     raw_measurement = 26.454564846
     hole_depth = 25
@@ -39,6 +42,8 @@ def test_imperial_measurements():
 
 
 def test_metric_measurements():
+    '''Test that a metric measurement is what you would expect with a precise
+    raw_measurement.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 1)
     raw_measurement = 48.80804985408
     hole_depth = 72
@@ -48,3 +53,14 @@ def test_metric_measurements():
 
     assert_equal(metric_distance, 48.8)
     assert_equal(metric_depth, 23.2)
+
+
+def test_different_sample_size():
+    '''Test to ensure that a user defined sample size works correctly.'''
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
+    raw_measurement1 = value.raw_distance(sample_size=1)
+    raw_measurement2 = value.raw_distance(sample_size=4)
+    raw_measurement3 = value.raw_distance(sample_size=11)
+    assert type(raw_measurement1) == float
+    assert type(raw_measurement2) == float
+    assert type(raw_measurement3) == float
