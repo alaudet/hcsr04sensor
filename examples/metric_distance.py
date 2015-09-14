@@ -15,7 +15,7 @@ def main():
 
     # Calculate the distance in centimeters
     metric_distance = value.distance_metric(raw_measurement)
-    print "The Distance = {} centimeters".format(metric_distance)
+    print("The Distance = {} centimeters".format(metric_distance))
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,7 @@ def main():
     # Calculate the liquid depth, in inches, of a hole filled
     # with liquid
     liquid_depth = value.depth_imperial(raw_measurement, hole_depth)    
-    print "Depth = {} inches".format(liquid_depth)
+    print("Depth = {} inches".format(liquid_depth))
 
 if __name__ == "__main__":
     main()

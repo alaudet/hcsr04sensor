@@ -55,7 +55,7 @@ class Measurement(object):
             GPIO.cleanup(self.trig_pin)
             GPIO.cleanup(self.echo_pin)
         sorted_sample = sorted(sample)
-        return sorted_sample[sample_size / 2]
+        return sorted_sample[sample_size // 2]
 
     def depth_metric(self, median_reading, hole_depth):
         '''Calculate the rounded metric depth of a liquid. hole_depth is the

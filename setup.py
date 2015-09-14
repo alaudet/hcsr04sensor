@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.1.4'
+version = '1.1.5b'
 
 setup(name='hcsr04sensor',
       version=version,
@@ -12,8 +12,8 @@ setup(name='hcsr04sensor',
           "Intended Audience :: End Users/Desktop",
           "Natural Language :: English",
           "Operating System :: POSIX :: Linux",
-          "Programming Language :: Python :: 2 :: Only",
           "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3",
           "Topic :: Home Automation",
           "License :: OSI Approved :: MIT License",
           ],

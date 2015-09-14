@@ -15,7 +15,7 @@ def main():
 
     # Calculate the distance in inches
     imperial_distance = value.distance_imperial(raw_measurement)
-    print "The Distance = {} inches".format(imperial_distance)
+    print("The Distance = {} inches".format(imperial_distance))
 
 if __name__ == "__main__":
     main()

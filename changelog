@@ -1,6 +1,9 @@
 Changelog
 =========
 
+Version 1.1.5
+Python 3 compatibility
+
 Version 1.1.4
 Allow changing the default sample size from 11 to a user defined value.  Default
 remains 11 unless otherwise specified.
