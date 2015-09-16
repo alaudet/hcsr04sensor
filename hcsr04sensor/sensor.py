@@ -22,7 +22,12 @@ class Measurement(object):
     def raw_distance(self, sample_size=11):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
-        is the median value of a sample of `sample_size` readings.'''
+        is the median value of a sample of `sample_size` readings.
+
+        Example: To use a sample size of 5 instead of 11;
+
+        value = sensor.Measurement(17, 27, 20, 'metric', 1)
+        r = value.raw_distance(sample_size=5)'''
       
         if self.unit == 'imperial':
             self.temperature = (self.temperature - 32) * 0.5556

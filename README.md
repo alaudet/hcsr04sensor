@@ -1,26 +1,33 @@
 HC-SR04 Ultrasonic Sensor on Raspberry Pi
 =========================================
 
-A simple module for calculating distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
-Instructions assume that you are using Raspbian Linux on your RaspberryPi
-
-Install pip if not on system
-============================
-
-If using Python2   sudo apt-get install python-pip
-
-If using Python3   sudo apt-get install python3-pip
+Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
+Instructions assume that you are using Raspbian Linux on your Raspberry Pi.
 
 
 Python2 Install
 ===============
 
+Install pip if not on system
+
+    sudo apt-get install python-pip
+
+Install module
+
     sudo pip install hcsr04sensor
+
 
 Python3 Install
 ===============
 
+Install pip if not on system
+
+    sudo apt-get install python3-pip
+
+Install module
+
     sudo pip-3.2 install hcsr04sensor
+
 
 Description
 ===========
@@ -52,7 +59,7 @@ Accuracy of Readings
 
 If you need highly accurate readings then this module would not be suitable for your project.  In that case you should probably use an Arduino instead of a Raspberry Pi.
 
-Linux is not a Real Time OS so you can expect to get a small variance on each reading, usually within 1cm of the actual value.  I say "usually" because every once in a while you can get a reading that is way out of range.  This is probably due to the OS multitasking other things instead of returning the reading.  It is why I use a sample of readings.  I can always trust that the median of reading of my sample of 11 readings is good.
+Linux is not a Real Time OS so you can expect to get a small variance on each reading, usually within a half cm of the actual value.  I say "usually" because every once in a while you can get a reading that is way out of range.  This is due to the OS executing other tasks before getting your distance reading.  It is why I use a sample of readings.  I can always trust that the median of my sample of 11 readings is good.
 
 Highly accurate readings are not required for some applications, for example I use this module in an application I wrote for a sump pump monitor.  I am not worried about millimeter accuracy for that application.  1 cm variance on a meter deep pit is close enough to alert me to problems.
 
