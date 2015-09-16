@@ -57,8 +57,7 @@ class Measurement(object):
             distance_cm = time_passed * ((speed_of_sound * 100) / 2)
             sample.append(distance_cm)
             # Only cleanup the pins used to prevent clobbering any others in use by the program
-            GPIO.cleanup(self.trig_pin)
-            GPIO.cleanup(self.echo_pin)
+            GPIO.cleanup((self.trig_pin, self.echo_pin))
         sorted_sample = sorted(sample)
         return sorted_sample[sample_size // 2]
 
