@@ -2,14 +2,15 @@ from nose.tools import *
 import math
 from hcsr04sensor.sensor import Measurement
 
-TRIG_PIN = 17
-ECHO_PIN = 27
+TRIG_PIN = 23
+ECHO_PIN = 24
 
 def test_measurement():
     '''Assure object is being created properly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 1)
-    assert_equal(value.trig_pin, 17)
-    assert_equal(value.echo_pin, 27)
+    assert_equal(isinstance(value, Measurement), True)
+    assert_equal(value.trig_pin, TRIG_PIN)
+    assert_equal(value.echo_pin, ECHO_PIN)
     assert_equal(value.temperature, 20)
     assert_equal(value.unit, 'metric')
     assert_equal(value.round_to, 1)
