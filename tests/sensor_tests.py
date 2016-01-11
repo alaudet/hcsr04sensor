@@ -2,8 +2,8 @@ from nose.tools import *
 import math
 from hcsr04sensor.sensor import Measurement
 
-TRIG_PIN = 23
-ECHO_PIN = 24
+TRIG_PIN = 17
+ECHO_PIN = 27
 
 def test_measurement():
     '''Assure object is being created properly.'''

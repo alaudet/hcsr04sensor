@@ -68,5 +68,20 @@ Usage
 
 See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/examples.
 
-Access to Raspberry Pi GPIO pins require elevated priviledges.  Run example
+Access to Raspberry Pi GPIO pins require elevated priviledges if using version 0.5.11 of RPi.GPIO.  Run example
 scripts with sudo.
+
+Recommended
+===========
+
+To upgrade to version 0.6.x of RPi.GPIO which does not require elevated priviledges you can simply upgrade as follows;
+
+    sudo pip install -U hcsr04sensor
+
+or simply
+
+    sudo pip install -U RPi.GPIO
+
+or
+
+    sudo apt-get upgrade python-rpi.gpio
