@@ -11,13 +11,37 @@ import RPi.GPIO as GPIO
 
 class Measurement(object):
     '''Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
-    the GPIO pins of a Raspberry Pi.'''
-    def __init__(self, trig_pin, echo_pin, temperature, unit, round_to):
+    the GPIO pins of a Raspberry Pi.
+    
+    Defautls;
+    Metric values are used by default. For imperial values use
+    unit='imperial'
+    temperature=<Desired temperature in Fahrenheit>
+    
+    '''
+    def __init__(self,
+                 trig_pin,
+                 echo_pin,
+                 temperature=20,
+                 unit='metric',
+                 round_to=1
+                 ):
         self.trig_pin = trig_pin
         self.echo_pin = echo_pin
         self.temperature = temperature
         self.unit = unit
         self.round_to = round_to
+        
+        
+    def print_them(self):
+        '''temp method during testing to make sure the right values are 
+        getting passed
+        '''
+        print(self.trig_pin)
+        print(self.echo_pin)
+        print(self.temperature)
+        print(self.unit)
+        print(self.round_to)
 
     def raw_distance(self, sample_size=11):
         '''Return an error corrected unrounded distance, in cm, of an object 
@@ -26,7 +50,7 @@ class Measurement(object):
 
         Example: To use a sample size of 5 instead of 11;
 
-        value = sensor.Measurement(17, 27, 20, 'metric', 1)
+        value = sensor.Measurement(trig_pin, echo_pin)
         r = value.raw_distance(sample_size=5)'''
       
         if self.unit == 'imperial':
@@ -56,7 +80,8 @@ class Measurement(object):
             time_passed = sonar_signal_on - sonar_signal_off
             distance_cm = time_passed * ((speed_of_sound * 100) / 2)
             sample.append(distance_cm)
-            # Only cleanup the pins used to prevent clobbering any others in use by the program
+            # Only cleanup the pins used to prevent clobbering
+            # any others in use by the program
             GPIO.cleanup((self.trig_pin, self.echo_pin))
         sorted_sample = sorted(sample)
         return sorted_sample[sample_size // 2]

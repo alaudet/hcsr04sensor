@@ -1,6 +1,27 @@
 Changelog
 =========
 
+Version 1.3beta
+
+Adding more default values to the Measurement object in sensor.py.
+Most use cases only need to pass the Trig Pin and Echo Pin
+
+Default values are
+unit = 'metric'
+temperature = <celcius value>
+round_to = 1
+
+Default usage
+-------------
+sensor.Measurement(trig_pin, echo_pin)
+
+
+Alternative usage
+-----------------
+sensor.Measurement(trig_pin, echo_pin, temperature=68, unit='imperial', round_to=3)
+
+
+
 Version 1.2.0
 Python 3 compatibility
 
