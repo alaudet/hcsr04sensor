@@ -26,7 +26,7 @@ Install pip if not on system
 
 Install module
 
-    sudo pip-3.2 install hcsr04sensor
+    sudo pip3 install hcsr04sensor
 
 
 Description
@@ -76,12 +76,22 @@ Recommended
 
 To upgrade to version 0.6.x of RPi.GPIO which does not require elevated priviledges you can simply upgrade as follows;
 
+
+For Python 2
+
     sudo pip install -U hcsr04sensor
-
-or simply
-
-    sudo pip install -U RPi.GPIO
 
 or
 
     sudo apt-get upgrade python-rpi.gpio
+
+
+
+
+For Python 3
+
+    sudo pip3 install -U hcsr04sensor
+
+or
+
+    sudo apt-get upgrade python3-rpi.gpio

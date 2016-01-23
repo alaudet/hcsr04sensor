@@ -5,13 +5,22 @@ def main():
     '''Example script using hcsr04sensor module for Raspberry Pi'''
     trig_pin = 17
     echo_pin = 27
-    # unit = 'metric'  # choices (metric or imperial)
-    # temperature = 20  # Celcius for metric, Fahrenheit for imperial
-    # round_to = 1  # report a cleaner rounded output.
+    # Default values
+    # unit = 'metric'
+    # temperature = 20
+    # round_to = 1
 
     #  Create a distance reading with the hcsr04 sensor module
     value = sensor.Measurement(trig_pin, echo_pin)
     raw_measurement = value.raw_distance()
+
+    # To overide default values you can pass the following to value
+    # value = sensor.Measurement(trig_pin,
+    #                            echo_pin,
+    #                            temperature=10,
+    #                            round_to=2
+    #                            )
+
 
     # Calculate the distance in centimeters
     metric_distance = value.distance_metric(raw_measurement)
