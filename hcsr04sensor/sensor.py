@@ -31,16 +31,6 @@ class Measurement(object):
         self.unit = unit
         self.round_to = round_to
 
-    def print_them(self):
-        '''temp method during testing to make sure the right values are 
-        getting passed
-        '''
-        print(self.trig_pin)
-        print(self.echo_pin)
-        print(self.temperature)
-        print(self.unit)
-        print(self.round_to)
-
     def raw_distance(self, sample_size=11):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated

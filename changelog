@@ -1,26 +1,19 @@
 Changelog
 =========
 
-Version 1.3beta
+Version 1.3.0
 
-Adding more default values to the Measurement object in sensor.py.
-Most use cases only need to pass the Trig Pin and Echo Pin
+Add default values for unit, temperature and round_to in sensor.py
+hcsr04sensor uses metric temperature by default.
+Most use cases don't need to specify this and just causes extra typing
+for nothing.  But option is there to pass the imperial temperature if you like.
 
-Default values are
-unit = 'metric'
-temperature = <celcius value>
-round_to = 1
+Rounding beyond 1 decimal is pointless as readings on a multi tasking OS will
+not be Real Time and will have variance within 1 cm.  
+But if you need to you can specify round_to to be greater
+than 1
 
-Default usage
--------------
-sensor.Measurement(trig_pin, echo_pin)
-
-
-Alternative usage
------------------
-sensor.Measurement(trig_pin, echo_pin, temperature=68, unit='imperial', round_to=3)
-
-
+See the provided example scripts for usage.
 
 Version 1.2.0
 Python 3 compatibility
