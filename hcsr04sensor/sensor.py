@@ -12,13 +12,12 @@ import RPi.GPIO as GPIO
 class Measurement(object):
     '''Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
     the GPIO pins of a Raspberry Pi.
-    
-    Defautls;
+
     Metric values are used by default. For imperial values use
     unit='imperial'
     temperature=<Desired temperature in Fahrenheit>
-    
     '''
+
     def __init__(self,
                  trig_pin,
                  echo_pin,
@@ -31,8 +30,7 @@ class Measurement(object):
         self.temperature = temperature
         self.unit = unit
         self.round_to = round_to
-        
-        
+
     def print_them(self):
         '''temp method during testing to make sure the right values are 
         getting passed
@@ -52,7 +50,7 @@ class Measurement(object):
 
         value = sensor.Measurement(trig_pin, echo_pin)
         r = value.raw_distance(sample_size=5)'''
-      
+
         if self.unit == 'imperial':
             self.temperature = (self.temperature - 32) * 0.5556
         elif self.unit == 'metric':
