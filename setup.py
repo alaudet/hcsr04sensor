@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.3.0'
+version = '1.3.1beta7'
 
 setup(name='hcsr04sensor',
       version=version,
@@ -23,5 +23,5 @@ setup(name='hcsr04sensor',
       download_url='https://github.com/alaudet/hcsr04sensor/releases',
       license='MIT License',
       packages=['hcsr04sensor'],
-      install_requires=['RPi.GPIO']
+      install_requires=['RPi.GPIO', 'tqdm']
       )

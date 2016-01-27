@@ -31,15 +31,31 @@ class Measurement(object):
         self.unit = unit
         self.round_to = round_to
 
-    def raw_distance(self, sample_size=11):
+    def raw_distance(self, sample_size=11, sample_wait=0.03):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of `sample_size` readings.
 
-        Example: To use a sample size of 5 instead of 11;
+        
+        Speed of readings is a result of two variables.  The sample_size
+        per reading and the sample_wait (interval between individual samples).
+
+        Example: To use a sample size of 5 instead of 11 will increase the 
+        speed of your reading but could increase variance in readings;
 
         value = sensor.Measurement(trig_pin, echo_pin)
-        r = value.raw_distance(sample_size=5)'''
+        r = value.raw_distance(sample_size=5)
+        
+        Adjusting the interval between individual samples can also
+        increase the speed of the reading.  Increasing the speed will also
+        increase CPU usage.  Setting it too low will cause errors.  A default
+        of sample_wait=0.03 is a good balance between speed and minimizing 
+        CPU usage.  It is also a safe setting that should not cause errors.
+        
+        e.g.
+
+        r = value.raw_distance(sample_wait=0.02)
+        '''
 
         if self.unit == 'imperial':
             self.temperature = (self.temperature - 32) * 0.5556
@@ -57,7 +73,7 @@ class Measurement(object):
             GPIO.setup(self.trig_pin, GPIO.OUT)
             GPIO.setup(self.echo_pin, GPIO.IN)
             GPIO.output(self.trig_pin, GPIO.LOW)
-            time.sleep(0.3)
+            time.sleep(sample_wait)
             GPIO.output(self.trig_pin, True)
             time.sleep(0.00001)
             GPIO.output(self.trig_pin, False)
