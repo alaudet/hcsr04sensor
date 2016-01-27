@@ -80,3 +80,15 @@ def test_different_sample_size():
     assert type(raw_measurement1) == float
     assert type(raw_measurement2) == float
     assert type(raw_measurement3) == float
+
+def test_different_sample_wait():
+    '''Test to ensure that a user defined sample_wait times work correctly.'''
+    value = Measurement(TRIG_PIN, ECHO_PIN)
+    raw_measurement1 = value.raw_distance(sample_wait=0.3)
+    raw_measurement2 = value.raw_distance(sample_wait=0.1)
+    raw_measurement3 = value.raw_distance(sample_wait=0.03)
+    raw_measurement4 = value.raw_distance(sample_wait=0.01)
+    assert type(raw_measurement1) == float
+    assert type(raw_measurement2) == float
+    assert type(raw_measurement3) == float
+    assert type(raw_measurement4) == float

@@ -49,12 +49,12 @@ class Measurement(object):
         Adjusting the interval between individual samples can also
         increase the speed of the reading.  Increasing the speed will also
         increase CPU usage.  Setting it too low will cause errors.  A default
-        of sample_wait=0.03 is a good balance between speed and minimizing 
+        of sample_wait=0.1 is a good balance between speed and minimizing 
         CPU usage.  It is also a safe setting that should not cause errors.
         
         e.g.
 
-        r = value.raw_distance(sample_wait=0.02)
+        r = value.raw_distance(sample_wait=0.03)
         '''
 
         if self.unit == 'imperial':
