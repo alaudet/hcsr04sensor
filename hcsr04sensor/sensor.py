@@ -31,7 +31,7 @@ class Measurement(object):
         self.unit = unit
         self.round_to = round_to
 
-    def raw_distance(self, sample_size=11, sample_wait=0.03):
+    def raw_distance(self, sample_size=11, sample_wait=0.1):
         '''Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of `sample_size` readings.
