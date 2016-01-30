@@ -41,8 +41,15 @@ The module does the following;
   number of readings).  This is useful if you need to lower the sample size to take
   quicker readings.  Beware that the probability of getting erroneous readings
   increases as sample size is reduced.  For my purposes a sample of 11 readings gives a consistent
-  value that I can trust and takes approximately 5 seconds to run.
+  value that I can trust and takes approximately 3 seconds to run with a 0.1
+  second wait time between individual samples.
 
+  It is also possible to speed up the readings by passing a lower value to
+  sample_wait to raw_distance.  The lower the value the quicker the invidual
+  samples will be taken.  A default of 0.1 is a safe wait time but this can be
+  reduced further.  CPU usage increases as faster readings are taken as well as
+  the chance for errors.
+  
   This module uses BCM pin values on the Pi.  See the Raspberry Pi pin layout documentation for your model.
 
 * Rounds the value to a specified decimal place.
