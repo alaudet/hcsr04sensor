@@ -67,11 +67,13 @@ class Measurement(object):
 
         speed_of_sound = 331.3 * math.sqrt(1+(self.temperature / 273.15))
         sample = []
+        # setup input/output pins
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.trig_pin, GPIO.OUT)
+        GPIO.setup(self.echo_pin, GPIO.IN)
+        
         for distance_reading in range(sample_size):
-            GPIO.setwarnings(False)
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(self.trig_pin, GPIO.OUT)
-            GPIO.setup(self.echo_pin, GPIO.IN)
             GPIO.output(self.trig_pin, GPIO.LOW)
             time.sleep(sample_wait)
             GPIO.output(self.trig_pin, True)
@@ -84,10 +86,10 @@ class Measurement(object):
             time_passed = sonar_signal_on - sonar_signal_off
             distance_cm = time_passed * ((speed_of_sound * 100) / 2)
             sample.append(distance_cm)
-            # Only cleanup the pins used to prevent clobbering
-            # any others in use by the program
-            GPIO.cleanup((self.trig_pin, self.echo_pin))
         sorted_sample = sorted(sample)
+        # Only cleanup the pins used to prevent clobbering
+        # any others in use by the program
+        GPIO.cleanup((self.trig_pin, self.echo_pin))
         return sorted_sample[sample_size // 2]
 
     def depth_metric(self, median_reading, hole_depth):
