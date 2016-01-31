@@ -45,7 +45,9 @@ The module does the following;
   second wait time between individual samples.
 
   It is also possible to speed up the readings by passing a lower value to
-  sample_wait to raw_distance.  The lower the value the quicker the invidual
+  sample_wait in raw_distance.   
+
+  The lower the value the quicker the invidual
   samples will be taken.  A default of 0.1 is a safe wait time but this can be
   reduced further.  CPU usage increases as faster readings are taken as well as
   the chance for errors.
@@ -83,6 +85,8 @@ Recommended
 
 To upgrade to version 0.6.x of RPi.GPIO which does not require elevated priviledges you can simply upgrade as follows;
 
+Note: On Rasbian Wheezy you still seem to have to run RPi.GPIO with sudo in version 6.  It works without sudo in 
+Rasbian Jessie which is the latest version of Raspbian.
 
 For Python 2
 
@@ -102,3 +106,4 @@ For Python 3
 or
 
     sudo apt-get upgrade python3-rpi.gpio
+

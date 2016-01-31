@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.3.1beta7'
+version = '1.4.0'
 
 setup(name='hcsr04sensor',
       version=version,
@@ -14,6 +14,7 @@ setup(name='hcsr04sensor',
           "Operating System :: POSIX :: Linux",
           "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.2",
+          "Programming Language :: Python :: 3.4",
           "Topic :: Home Automation",
           "License :: OSI Approved :: MIT License",
           ],
@@ -23,5 +24,5 @@ setup(name='hcsr04sensor',
       download_url='https://github.com/alaudet/hcsr04sensor/releases',
       license='MIT License',
       packages=['hcsr04sensor'],
-      install_requires=['RPi.GPIO', 'tqdm']
+      install_requires=['RPi.GPIO']
       )
