@@ -2,30 +2,22 @@ HC-SR04 Ultrasonic Sensor on Raspberry Pi
 =========================================
 
 Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
-Instructions assume that you are using Raspbian Linux on your Raspberry Pi.
+Instructions assume that you are using Raspbian Linux.
 
 
 Python2 Install
 ===============
 
-Install pip if not on system
 
     sudo apt-get install python-pip
-
-Install module
-
     sudo pip install hcsr04sensor
 
 
 Python3 Install
 ===============
 
-Install pip if not on system
 
     sudo apt-get install python3-pip
-
-Install module
-
     sudo pip3 install hcsr04sensor
 
 
@@ -52,7 +44,7 @@ The module does the following;
   reduced further.  CPU usage increases as faster readings are taken as well as
   the chance for errors.
   
-  This module uses BCM pin values on the Pi.  See the Raspberry Pi pin layout documentation for your model.
+  This module uses BCM pin values.  See the Raspberry Pi pin layout documentation for your model.
 
 * Rounds the value to a specified decimal place.
 
@@ -85,7 +77,7 @@ Recommended
 
 To upgrade to version 0.6.x of RPi.GPIO which does not require elevated priviledges you can simply upgrade as follows;
 
-Note: On Rasbian Wheezy you still seem to have to run RPi.GPIO with sudo in version 6.  It works without sudo in 
+Note: On Raspbian Wheezy you still seem to have to run RPi.GPIO with sudo in version 6.  It works without sudo in 
 Rasbian Jessie which is the latest version of Raspbian.
 
 For Python 2
