@@ -1,4 +1,4 @@
-import hcsr04sensor.sensor as sensor
+from hcsr04sensor import sensor
 
 
 def main():
