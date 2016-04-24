@@ -99,3 +99,13 @@ or
 
     sudo apt-get upgrade python3-rpi.gpio
 
+Contributing
+============
+
+Contributions to hcsr04sensor are welcome.  Please open an issue in the issue
+tracker prior to a pull request.
+
+New features and bug fixes should be applied against the devel branch and not master. Contributions against the master branch will be rejected.
+
+Nose is currently used for testing.  All tests should pass before issuing
+the pull request.
