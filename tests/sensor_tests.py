@@ -7,7 +7,7 @@ ECHO_PIN = 27
 
 
 def test_measurement():
-    '''Assure object is being created properly.'''
+    '''Test that object is being created properly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 25, 'metric', 2)
     value_defaults = Measurement(TRIG_PIN, ECHO_PIN)
     assert_equal(isinstance(value, Measurement), True)
@@ -24,7 +24,7 @@ def test_measurement():
 
 
 def test_imperial_temperature_and_speed_of_sound():
-    '''Test that after Fahrenheit is converted to Celsius that speed of sound is
+    '''Test that after Fahrenheit is converted to Celsius, that speed of sound is
     calculated correctly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial')
     raw_measurement = value.raw_distance()
@@ -72,7 +72,7 @@ def test_metric_measurements():
     assert_equal(metric_depth, 23.2)
 
 def test_different_sample_size():
-    '''Test to ensure that a user defined sample size works correctly.'''
+    '''Test that a user defined sample_size works correctly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
     raw_measurement1 = value.raw_distance(sample_size=1)
     raw_measurement2 = value.raw_distance(sample_size=4)
@@ -82,7 +82,7 @@ def test_different_sample_size():
     assert type(raw_measurement3) == float
 
 def test_different_sample_wait():
-    '''Test to ensure that a user defined sample_wait times work correctly.'''
+    '''Test that a user defined sample_wait time work correctly.'''
     value = Measurement(TRIG_PIN, ECHO_PIN)
     raw_measurement1 = value.raw_distance(sample_wait=0.3)
     raw_measurement2 = value.raw_distance(sample_wait=0.1)
