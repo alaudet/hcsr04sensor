@@ -79,10 +79,14 @@ class Measurement(object):
             GPIO.output(self.trig_pin, True)
             time.sleep(0.00001)
             GPIO.output(self.trig_pin, False)
-            while GPIO.input(self.echo_pin) == 0:
-                sonar_signal_off = time.time()
-            while GPIO.input(self.echo_pin) == 1:
-                sonar_signal_on = time.time()
+            while True:
+                if GPIO.input(self.echo_pin) == 1:
+                    sonar_signal_off = time.time()
+                    break
+            while True:
+                if GPIO.input(self.echo_pin) == 0:
+                    sonar_signal_on = time.time()
+                    break
             time_passed = sonar_signal_on - sonar_signal_off
             distance_cm = time_passed * ((speed_of_sound * 100) / 2)
             sample.append(distance_cm)
