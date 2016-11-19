@@ -6,7 +6,6 @@ sensor and a Raspberry Pi.  Imperial and Metric measurements are available'''
 
 import time
 import math
-import sys
 import RPi.GPIO as GPIO
 
 
