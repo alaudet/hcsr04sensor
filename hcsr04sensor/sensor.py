@@ -6,6 +6,7 @@ sensor and a Raspberry Pi.  Imperial and Metric measurements are available'''
 
 import time
 import math
+import sys
 import RPi.GPIO as GPIO
 
 
@@ -85,8 +86,7 @@ class Measurement(object):
                     sonar_signal_off = time.time()
                     echo_status_counter += 1
                 else:
-                    raise SystemError('Echo pulse not received')
-                print(echo_status_counter)
+                    raise SystemError('Echo pulse was not received')
             while GPIO.input(self.echo_pin) == 1:
                 sonar_signal_on = time.time()
             time_passed = sonar_signal_on - sonar_signal_off
