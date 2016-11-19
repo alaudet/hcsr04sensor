@@ -79,8 +79,14 @@ class Measurement(object):
             GPIO.output(self.trig_pin, True)
             time.sleep(0.00001)
             GPIO.output(self.trig_pin, False)
+            echo_status_counter = 1
             while GPIO.input(self.echo_pin) == 0:
-                sonar_signal_off = time.time()
+                if echo_status_counter < 1000:
+                    sonar_signal_off = time.time()
+                    echo_status_counter += 1
+                else:
+                    raise SystemError('Echo pulse not received')
+                print(echo_status_counter)
             while GPIO.input(self.echo_pin) == 1:
                 sonar_signal_on = time.time()
             time_passed = sonar_signal_on - sonar_signal_off
