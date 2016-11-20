@@ -54,9 +54,9 @@ def get_args():
 
 
 def main():
+    '''Main function to run the sensor with passed arguments'''
+    
     trig, echo, speed, samples = get_args()
-
-    # Print the values
     print('trig pin = gpio {}'.format(trig))
     print('echo pin = gpio {}'.format(echo))
     print('speed = {}'.format(speed))
@@ -70,7 +70,6 @@ def main():
     metric_distance = value.distance_metric(raw_distance)
     print('The imperial distance is {} inches.'.format(imperial_distance))
     print('The metric distance is {} centimetres.'.format(metric_distance))
-
 
 
 if __name__ == '__main__':

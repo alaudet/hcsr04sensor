@@ -15,6 +15,20 @@ Python2 Install
 
 Python3 Install
 ===============
+usage: hcsr04.py [-h] -t TRIG -e ECHO [-sp SPEED] [-ss SAMPLES]
+
+Script tests the HCSR04 sensor under different configurations
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TRIG, --trig TRIG  Trig Pin (Required - must be an integer)
+  -e ECHO, --echo ECHO  Echo Pin (Required - must be an integer)
+  -sp SPEED, --speed SPEED
+                        Time between individual reading samples (Optional -
+                        must be a float, default is 0.1 seconds)
+  -ss SAMPLES, --samples SAMPLES
+                        Sample Size (Optional - must be an integer, default is
+                        11)
 
 
     sudo apt-get install python3-pip
@@ -65,6 +79,20 @@ Linux is not a Real Time OS so you can expect to get a small variance on each re
 
 Highly accurate readings are not required for some applications, for example I use this module in an application I wrote for a sump pump monitor.  I am not worried about millimeter accuracy for that application.  1 cm variance on a meter deep pit is close enough to alert me to problems.
 
+usage: hcsr04.py [-h] -t TRIG -e ECHO [-sp SPEED] [-ss SAMPLES]
+
+Script tests the HCSR04 sensor under different configurations
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TRIG, --trig TRIG  Trig Pin (Required - must be an integer)
+  -e ECHO, --echo ECHO  Echo Pin (Required - must be an integer)
+  -sp SPEED, --speed SPEED
+                        Time between individual reading samples (Optional -
+                        must be a float, default is 0.1 seconds)
+  -ss SAMPLES, --samples SAMPLES
+                        Sample Size (Optional - must be an integer, default is
+                        11)
 
 Distance Limitations
 ====================
@@ -80,6 +108,28 @@ See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/examp
 
 Access to Raspberry Pi GPIO pins require elevated priviledges if using version 0.5.11 of RPi.GPIO.  Run example
 scripts with sudo.
+
+Testing the Module
+==================
+
+Added a script that is installed to /usr/local/bin called hcsr04.py.
+
+
+    usage: hcsr04.py [-h] -t TRIG -e ECHO [-sp SPEED] [-ss SAMPLES]
+
+    Script tests the HCSR04 sensor under different configurations
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -t TRIG, --trig TRIG  Trig Pin (Required - must be an integer)
+      -e ECHO, --echo ECHO  Echo Pin (Required - must be an integer)
+      -sp SPEED, --speed SPEED
+                            Time between individual reading samples (Optional -
+                            must be a float, default is 0.1 seconds)
+      -ss SAMPLES, --samples SAMPLES
+                            Sample Size (Optional - must be an integer, default is
+                            11)
+
 
 Recommended
 ===========
