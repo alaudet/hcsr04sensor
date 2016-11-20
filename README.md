@@ -54,6 +54,7 @@ The module does the following;
 
     pydoc hcsr04sensor.sensor
 
+* Raises an exception if a faulty cable or sensor prevents an echo pulse from being received.
 
 Accuracy of Readings
 ====================
@@ -63,6 +64,14 @@ If you need highly accurate readings then this module would not be suitable for 
 Linux is not a Real Time OS so you can expect to get a small variance on each reading, usually within a half cm of the actual value.  I say "usually" because every once in a while you can get a reading that is way out of range.  This is due to the OS executing other tasks before getting your distance reading.  It is why I use a sample of readings.  I can always trust that the median of my sample of 11 readings is good.
 
 Highly accurate readings are not required for some applications, for example I use this module in an application I wrote for a sump pump monitor.  I am not worried about millimeter accuracy for that application.  1 cm variance on a meter deep pit is close enough to alert me to problems.
+
+
+Distance Limitations
+====================
+
+The HCSR04 sensor is suited for short distance readings.  The specification manual says it is suitable up to 13 feet.  I have tested it to go further than that, but anything over 12 feet starts having periodic strange readings.
+This module is not suitable for long distances. 
+
 
 Usage
 =====

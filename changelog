@@ -1,8 +1,11 @@
 Changelog
 =========
 
-Version 1.4.10b (Beta)
-Add error handling around failed echo return pulses.
+Version 1.5.0
+Add error handling around failed echo return pulses which could indicate
+a sensor or cable problem.  Will allow applications that use the module
+to raise an exception and have better error reporting rather than having 
+their app hang indefinitely with 100% CPU spike.
 
 Version 1.4.0
 
