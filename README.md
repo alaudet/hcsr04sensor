@@ -104,7 +104,7 @@ This module is not suitable for long distances.
 Usage
 =====
 
-See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/examples.
+See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/recipes
 
 Access to Raspberry Pi GPIO pins require elevated priviledges if using version 0.5.11 of RPi.GPIO.  Run example
 scripts with sudo.
