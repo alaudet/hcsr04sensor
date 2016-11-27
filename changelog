@@ -1,6 +1,12 @@
 Changelog
 =========
 
+
+Version 1.5.1
+Added a script called hcsr04.py that allows testing the library.
+
+run 'hcsr04.py --help'  to see options.
+
 Version 1.5.0
 Add error handling around failed echo return pulses which could indicate
 a sensor or cable problem.  Will allow applications that use the module

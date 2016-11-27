@@ -39,7 +39,7 @@ def get_args():
     parser.add_argument('-ss',
                         '--samples',
                         type=int,
-                        help='Sample Size (Optional - must be an \
+                        help='Reading Sample Size (Optional - must be an \
                                 integer, default is 11)',
                         required=False,
                         default=11

@@ -1,8 +1,6 @@
 from setuptools import setup
 
-version = '1.5.1b'
-
-script = ['bin/hcsr04.py']
+version = '1.5.2b'
 
 setup(name='hcsr04sensor',
       version=version,
@@ -26,6 +24,6 @@ setup(name='hcsr04sensor',
       download_url='https://github.com/alaudet/hcsr04sensor/releases',
       license='MIT License',
       packages=['hcsr04sensor'],
-      scripts=script,
+      scripts=['bin/hcsr04.py'],
       install_requires=['RPi.GPIO']
       )
