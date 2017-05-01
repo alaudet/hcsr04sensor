@@ -139,3 +139,11 @@ New features and bug fixes should be applied against the devel branch and not ma
 
 Nose is currently used for testing.  All tests should pass before issuing
 the pull request.
+
+
+Donate
+======
+
+[Your Donation is Appreciated](https://www.linuxnorth.org/donate/)
+
+
