@@ -1,8 +1,6 @@
 HC-SR04 Ultrasonic Sensor on Raspberry Pi
 =========================================
 
-Donate
-======
 
 [Hcsr04sensor Web Page](https://www.linuxnorth.org/hcsr04sensor)
 
