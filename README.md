@@ -1,8 +1,13 @@
 HC-SR04 Ultrasonic Sensor on Raspberry Pi
 =========================================
 
-Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi.
-Instructions assume that you are using Raspbian Linux.
+Donate
+======
+
+[Hcsr04sensor Web Page](https://www.linuxnorth.org/hcsr04sensor)
+
+
+Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi. Instructions assume that you are using Raspbian Linux.
 
 
 Python2 Install
