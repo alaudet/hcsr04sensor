@@ -24,12 +24,14 @@ class Measurement(object):
                  temperature=20,
                  unit='metric',
                  round_to=1
+                 gpio_mode=GPIO.BCM
                  ):
         self.trig_pin = trig_pin
         self.echo_pin = echo_pin
         self.temperature = temperature
         self.unit = unit
         self.round_to = round_to
+        self.gpio_mode = gpio_mode
 
     def raw_distance(self, sample_size=11, sample_wait=0.1):
         '''Return an error corrected unrounded distance, in cm, of an object 
@@ -69,7 +71,7 @@ class Measurement(object):
         sample = []
         # setup input/output pins
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(self.gpio_mode)
         GPIO.setup(self.trig_pin, GPIO.OUT)
         GPIO.setup(self.echo_pin, GPIO.IN)
         
