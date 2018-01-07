@@ -1,14 +1,18 @@
 from nose.tools import *
 import math
+import RPi.GPIO as GPIO
 from hcsr04sensor.sensor import Measurement
 
 TRIG_PIN = 17
 ECHO_PIN = 27
 
+# Uncomment the mode you are using to identify the GPIO pins.  Default is BCM
+GPIO_MODE = GPIO.BCM
+# GPIO_MODE = GPIO.BOARD
 
 def test_measurement():
     '''Test that object is being created properly.'''
-    value = Measurement(TRIG_PIN, ECHO_PIN, 25, 'metric', 2)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 25, 'metric', 2, gpio_mode=GPIO_MODE)
     value_defaults = Measurement(TRIG_PIN, ECHO_PIN)
     assert_equal(isinstance(value, Measurement), True)
     assert_equal(value.trig_pin, TRIG_PIN)
@@ -26,7 +30,7 @@ def test_measurement():
 def test_imperial_temperature_and_speed_of_sound():
     '''Test that after Fahrenheit is converted to Celsius, that speed of sound is
     calculated correctly.'''
-    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial')
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', gpio_mode=GPIO_MODE)
     raw_measurement = value.raw_distance()
     speed_of_sound = 331.3 * math.sqrt(1+(value.temperature / 273.15))
     assert_equal(value.temperature, 20.0016)
@@ -39,7 +43,7 @@ def test_imperial_temperature_and_speed_of_sound():
 def test_imperial_measurements():
     '''Test that an imperial measurement is what you would expect with a precise
     raw_measurement.'''
-    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial')
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial',  gpio_mode=GPIO_MODE)
     raw_measurement = 26.454564846
     hole_depth = 25
 
@@ -54,7 +58,7 @@ def test_imperial_measurements():
 def test_metric_measurements():
     '''Test that a metric measurement is what you would expect with a precise
     raw_measurement.'''
-    value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 2)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, 'metric', 2, gpio_mode=GPIO_MODE)
     value_defaults = Measurement(TRIG_PIN, ECHO_PIN)
     raw_measurement = 48.80804985408
     hole_depth = 72
@@ -73,7 +77,7 @@ def test_metric_measurements():
 
 def test_different_sample_size():
     '''Test that a user defined sample_size works correctly.'''
-    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, 'imperial', 1, gpio_mode=GPIO_MODE)
     raw_measurement1 = value.raw_distance(sample_size=1)
     raw_measurement2 = value.raw_distance(sample_size=4)
     raw_measurement3 = value.raw_distance(sample_size=11)
@@ -83,7 +87,7 @@ def test_different_sample_size():
 
 def test_different_sample_wait():
     '''Test that a user defined sample_wait time work correctly.'''
-    value = Measurement(TRIG_PIN, ECHO_PIN)
+    value = Measurement(TRIG_PIN, ECHO_PIN, gpio_mode=GPIO_MODE)
     raw_measurement1 = value.raw_distance(sample_wait=0.3)
     raw_measurement2 = value.raw_distance(sample_wait=0.1)
     raw_measurement3 = value.raw_distance(sample_wait=0.03)

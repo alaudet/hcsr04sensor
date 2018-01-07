@@ -13,3 +13,5 @@ To use nose on Python3 try the following
     python3 -m "nose" -v
 
 NOTE: You must  adapt your TRIG_PIN and ECHO_PIN setup in sensor_tests
+
+NOTE: If using GPIO.BOARD mode to identify pins ensure you uncomment the proper GPIO_MODE variable.
