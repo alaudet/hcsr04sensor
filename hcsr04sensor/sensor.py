@@ -23,7 +23,7 @@ class Measurement(object):
                  echo_pin,
                  temperature=20,
                  unit='metric',
-                 round_to=1
+                 round_to=1,
                  gpio_mode=GPIO.BCM
                  ):
         self.trig_pin = trig_pin
