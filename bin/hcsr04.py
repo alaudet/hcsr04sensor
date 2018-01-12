@@ -14,14 +14,16 @@ def get_args():
     parser.add_argument('-t',
                         '--trig',
                         type=int,
-                        help='Trig Pin (Required - must be an integer)',
+                        help='Trig Pin (Required - must be an integer, must \
+                             use BCM pin values)',
                         required=True
                         )
 
     parser.add_argument('-e',
                         '--echo',
                         type=int,
-                        help='Echo Pin (Required - must be an integer)',
+                        help='Echo Pin (Required - must be an integer, must \
+                             use BCM pin values)',
                         required=True
                         )
 
@@ -44,6 +46,7 @@ def get_args():
                         required=False,
                         default=11
                         )
+ 
 
     args = parser.parse_args()
     trig = args.trig

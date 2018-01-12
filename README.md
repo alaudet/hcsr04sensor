@@ -87,7 +87,7 @@ Testing the Module
 ==================
 
 Added a script that is installed to /usr/local/bin called hcsr04.py.
-
+This utility does not presently support BOARD pin values.  Use BCM pin values.
 
     usage: hcsr04.py [-h] -t TRIG -e ECHO [-sp SPEED] [-ss SAMPLES]
 
@@ -95,8 +95,10 @@ Added a script that is installed to /usr/local/bin called hcsr04.py.
 
     optional arguments:
       -h, --help            show this help message and exit
-      -t TRIG, --trig TRIG  Trig Pin (Required - must be an integer)
-      -e ECHO, --echo ECHO  Echo Pin (Required - must be an integer)
+      -t TRIG, --trig TRIG  Trig Pin (Required - must be an integer, must use
+      BCM pin values)
+      -e ECHO, --echo ECHO  Echo Pin (Required - must be an integer, must use
+      BCM pin values)
       -sp SPEED, --speed SPEED
                             Time between individual reading samples (Optional -
                             must be a float, default is 0.1 seconds)

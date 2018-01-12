@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 1.5.2
+Allow use of BCM or BOARD values to identify GPIO pins. hcsr04sensor
+uses BCM values by default, but allows the user to override with BOARD
+values if they wish.
 
 Version 1.5.1
 Added a script called hcsr04.py that allows testing the library.
