@@ -50,6 +50,8 @@ The module does the following;
 
 * Rounds the value to a specified decimal place.
 
+* Uses BCM pin values by default.  BOARD pin values are supported.
+
 * Adjusts the reading based on temperature by adjusting the speed of sound.
 
 * Allows measuring distance and depth in metric and imperial units.  See;
