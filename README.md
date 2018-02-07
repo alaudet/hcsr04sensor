@@ -7,6 +7,8 @@ HC-SR04 Ultrasonic Sensor on Raspberry Pi
 
 Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi. Instructions assume that you are using Raspbian Linux.
 
+This module also works with the JSN-SR04T waterproof sound sensor.
+
 
 Python2 Install
 ===============
