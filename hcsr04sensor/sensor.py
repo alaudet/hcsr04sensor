@@ -99,6 +99,9 @@ class Measurement(object):
         GPIO.cleanup((self.trig_pin, self.echo_pin))
         return sorted_sample[sample_size // 2]
 
+
+        
+    
     def depth_metric(self, median_reading, hole_depth):
         '''Calculate the rounded metric depth of a liquid. hole_depth is the
         distance, in cm's, from the sensor to the bottom of the hole.'''
@@ -118,3 +121,26 @@ class Measurement(object):
         '''Calculate the rounded imperial distance, in inches, from the sensor
         to an oject.'''
         return round(median_reading * 0.394, self.round_to)
+
+
+
+def basic_distance(trig_pin, echo_pin, gpio_mode, celsius=20):
+    '''Return an unformatted distance in cm's as read directly from
+    RPi.GPIO.'''
+
+    speed_of_sound = 331.3 * math.sqrt(1+(celsius / 273.15))
+    GPIO.setmode(gpio_mode)
+    GPIO.setup(trig_pin, GPIO.OUT)
+    GPIO.setup(echo_pin, GPIO.IN)
+    GPIO.output(trig_pin, GPIO.LOW)
+    time.sleep(0.1)
+    GPIO.output(trig_pin, True)
+    time.sleep(0.00001)
+    GPIO.output(trig_pin, False)
+    while GPIO.input(echo_pin) == 0:
+        sonar_signal_off = time.time()
+    while GPIO.input(echo_pin) == 1:
+        sonar_signal_on = time.time()
+    time_passed = sonar_signal_on - sonar_signal_off
+    return time_passed * ((speed_of_sound * 100) / 2)
+

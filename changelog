@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 1.5.3
+Add a static basic_reading function to sensor.py. This was added by request.
+See README for details
+
 Version 1.5.2
 Allow use of BCM or BOARD values to identify GPIO pins. hcsr04sensor
 uses BCM values by default, but allows the user to override with BOARD

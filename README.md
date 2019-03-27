@@ -111,6 +111,15 @@ This utility does not presently support BOARD pin values.  Use BCM pin values.
                             11)
 
 
+Take a Basic Reading
+=====================
+
+If you don't want to use a sample of readings for error handling, exception handling for faulty cables or pin cleanups I have included a stand alone function that will return a basic metric reading
+without creating a Measurement object.  It provides the exact return that is provided  by Rpi.GPIO.  This allows you to handle all of these things to your own preference in your code.
+
+See the example basic_reading.py script in https://github.com/alaudet/hcsr04sensor/tree/master/recipes
+
+
 Recommended
 ===========
 
