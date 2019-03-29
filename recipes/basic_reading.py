@@ -6,7 +6,6 @@ from hcsr04sensor import sensor
 # This script uses a static function outside of the Measurement class
 # in hcsr04sensor named basic_distance
 # No median readings pulled from a sample for error correction
-# No exception handling for faulty cable
 # No setmode in the library
 # No pin cleanups.  You handle all of these things in your own code
 # Just a simple return of a cm distance as reported directly from Rpi.GPIO
@@ -15,6 +14,7 @@ from hcsr04sensor import sensor
 trig = 17
 echo = 27
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM) # use GPIO.BOARD for board pin values
 
 # use default temp of 20 Celcius

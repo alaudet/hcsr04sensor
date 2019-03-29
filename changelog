@@ -2,7 +2,7 @@ Changelog
 =========
 
 Version 1.5.3
-Add a static basic_reading function to sensor.py. This was added by request.
+Add a static basic_distance function to sensor.py. This was added by request.
 See README for details
 
 Version 1.5.2
