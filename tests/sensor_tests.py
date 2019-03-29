@@ -1,7 +1,7 @@
 from nose.tools import *
 import math
 import RPi.GPIO as GPIO
-from hcsr04sensor.sensor import Measurement
+from hcsr04sensor.sensor import Measurement,basic_distance
 
 TRIG_PIN = 17
 ECHO_PIN = 27
@@ -96,3 +96,16 @@ def test_different_sample_wait():
     assert type(raw_measurement2) == float
     assert type(raw_measurement3) == float
     assert type(raw_measurement4) == float
+
+def test_basic_distancei_bcm():
+    '''Test that float returned with default, positive and negative temps'''
+    GPIO.setmode(GPIO.BCM)
+    basic_reading = basic_distance(TRIG_PIN, ECHO_PIN)
+    basic_reading2 = basic_distance(TRIG_PIN, ECHO_PIN, celsius=10)
+    basic_reading3 = basic_distance(TRIG_PIN, ECHO_PIN, celsius=0)
+    basic_reading4 = basic_distance(TRIG_PIN, ECHO_PIN, celsius=-100)
+    assert type(basic_reading) == float
+    assert type(basic_reading2) == float
+    assert type(basic_reading3) == float
+    assert type(basic_reading4) == float
+    GPIO.cleanup((TRIG_PIN, ECHO_PIN))

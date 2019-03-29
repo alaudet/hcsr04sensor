@@ -124,12 +124,11 @@ class Measurement(object):
 
 
 
-def basic_distance(trig_pin, echo_pin, gpio_mode, celsius=20):
+def basic_distance(trig_pin, echo_pin, celsius=20):
     '''Return an unformatted distance in cm's as read directly from
     RPi.GPIO.'''
 
     speed_of_sound = 331.3 * math.sqrt(1+(celsius / 273.15))
-    GPIO.setmode(gpio_mode)
     GPIO.setup(trig_pin, GPIO.OUT)
     GPIO.setup(echo_pin, GPIO.IN)
     GPIO.output(trig_pin, GPIO.LOW)
