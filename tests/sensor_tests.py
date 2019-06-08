@@ -109,3 +109,15 @@ def test_basic_distancei_bcm():
     assert type(basic_reading3) == float
     assert type(basic_reading4) == float
     GPIO.cleanup((TRIG_PIN, ECHO_PIN))
+
+def test_raises_exception_unit():
+    '''Test that an error is raised if user passes invalid unit type'''
+    value = Measurement(TRIG_PIN, ECHO_PIN, unit="Fahrenheit")
+    #raw_measurement = value.raw_distance()
+    assert_raises(ValueError, value.raw_distance)
+
+def test_raises_exception_no_pulse():
+    '''Test that SystemError raised if echo pulse not received'''
+    value = Measurement(TRIG_PIN, 28)
+    assert_raises(SystemError, value.raw_distance)
+    
