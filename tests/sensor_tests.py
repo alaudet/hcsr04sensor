@@ -111,13 +111,16 @@ def test_basic_distancei_bcm():
     GPIO.cleanup((TRIG_PIN, ECHO_PIN))
 
 def test_raises_exception_unit():
-    '''Test that an error is raised if user passes invalid unit type'''
+    '''Test that a ValueError is raised if user passes invalid unit type'''
     value = Measurement(TRIG_PIN, ECHO_PIN, unit="Fahrenheit")
     #raw_measurement = value.raw_distance()
     assert_raises(ValueError, value.raw_distance)
 
 def test_raises_exception_no_pulse():
-    '''Test that SystemError raised if echo pulse not received'''
-    value = Measurement(TRIG_PIN, 28)
+    '''Test that SystemError raised if echo pulse not received.
+       Using the wrong echo pin but typically this error gets raised
+       with a faulty cable.  Wrong echo pin simulates that condition'''
+    wrong_echo_pin = ECHO_PIN - 1
+    value = Measurement(TRIG_PIN, wrong_echo_pin)
     assert_raises(SystemError, value.raw_distance)
     
