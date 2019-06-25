@@ -113,7 +113,6 @@ def test_basic_distancei_bcm():
 def test_raises_exception_unit():
     '''Test that a ValueError is raised if user passes invalid unit type'''
     value = Measurement(TRIG_PIN, ECHO_PIN, unit="Fahrenheit")
-    #raw_measurement = value.raw_distance()
     assert_raises(ValueError, value.raw_distance)
 
 def test_raises_exception_no_pulse():

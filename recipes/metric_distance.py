@@ -3,9 +3,10 @@ from hcsr04sensor import sensor
 # Created by Al Audet
 # MIT License
 
+
 def main():
-    '''Calculate the distance of an object in centimeters using a HCSR04 sensor
-       and a Raspberry Pi'''
+    """Calculate the distance of an object in centimeters using a HCSR04 sensor
+       and a Raspberry Pi"""
 
     trig_pin = 17
     echo_pin = 27
@@ -25,10 +26,10 @@ def main():
     #                            round_to=2
     #                            )
 
-
     # Calculate the distance in centimeters
-    metric_distance = value.distance_metric(raw_measurement)
+    metric_distance = value.distance(raw_measurement)
     print("The Distance = {} centimeters".format(metric_distance))
+
 
 if __name__ == "__main__":
     main()

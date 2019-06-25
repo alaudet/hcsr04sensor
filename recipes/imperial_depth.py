@@ -3,9 +3,10 @@ from hcsr04sensor import sensor
 # Created by Al Audet
 # MIT License
 
+
 def main():
-    '''Calculate the depth of a liquid in inches using a HCSR04 sensor
-       and a Raspberry Pi'''
+    """Calculate the depth of a liquid in inches using a HCSR04 sensor
+       and a Raspberry Pi"""
 
     trig_pin = 17
     echo_pin = 27
@@ -18,18 +19,16 @@ def main():
 
     # Create a distance reading with the hcsr04 sensor module
     # and overide the default values for temp, unit and rounding)
-    value = sensor.Measurement(trig_pin,
-                               echo_pin,
-                               temperature=68,
-                               unit='imperial',
-                               round_to=2
-                               )
+    value = sensor.Measurement(
+        trig_pin, echo_pin, temperature=68, unit="imperial", round_to=2
+    )
     raw_measurement = value.raw_distance()
 
     # Calculate the liquid depth, in inches, of a hole filled
     # with liquid
-    liquid_depth = value.depth_imperial(raw_measurement, hole_depth)
+    liquid_depth = value.depth(raw_measurement, hole_depth)
     print("Depth = {} inches".format(liquid_depth))
+
 
 if __name__ == "__main__":
     main()

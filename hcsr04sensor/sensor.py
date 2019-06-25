@@ -1,31 +1,33 @@
-'''Measure the distance or depth with an HCSR04 Ultrasonic sound 
-sensor and a Raspberry Pi.  Imperial and Metric measurements are available'''
+"""Measure the distance or depth with an HCSR04 Ultrasonic sound 
+sensor and a Raspberry Pi.  Imperial and Metric measurements are available"""
 
 # Al Audet
 # MIT License
 
 import time
 import math
+import warnings
 import RPi.GPIO as GPIO
 
 
 class Measurement(object):
-    '''Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
+    """Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
     the GPIO pins of a Raspberry Pi.
 
     Metric values are used by default. For imperial values use
     unit='imperial'
     temperature=<Desired temperature in Fahrenheit>
-    '''
+    """
 
-    def __init__(self,
-                 trig_pin,
-                 echo_pin,
-                 temperature=20,
-                 unit='metric',
-                 round_to=1,
-                 gpio_mode=GPIO.BCM
-                 ):
+    def __init__(
+        self,
+        trig_pin,
+        echo_pin,
+        temperature=20,
+        unit="metric",
+        round_to=1,
+        gpio_mode=GPIO.BCM,
+    ):
         self.trig_pin = trig_pin
         self.echo_pin = echo_pin
         self.temperature = temperature
@@ -34,11 +36,11 @@ class Measurement(object):
         self.gpio_mode = gpio_mode
 
     def raw_distance(self, sample_size=11, sample_wait=0.1):
-        '''Return an error corrected unrounded distance, in cm, of an object 
+        """Return an error corrected unrounded distance, in cm, of an object 
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of `sample_size` readings.
 
-        
+
         Speed of readings is a result of two variables.  The sample_size
         per reading and the sample_wait (interval between individual samples).
 
@@ -47,34 +49,33 @@ class Measurement(object):
 
         value = sensor.Measurement(trig_pin, echo_pin)
         r = value.raw_distance(sample_size=5)
-        
+
         Adjusting the interval between individual samples can also
         increase the speed of the reading.  Increasing the speed will also
         increase CPU usage.  Setting it too low will cause errors.  A default
         of sample_wait=0.1 is a good balance between speed and minimizing 
         CPU usage.  It is also a safe setting that should not cause errors.
-        
+
         e.g.
 
         r = value.raw_distance(sample_wait=0.03)
-        '''
+        """
 
-        if self.unit == 'imperial':
+        if self.unit == "imperial":
             self.temperature = (self.temperature - 32) * 0.5556
-        elif self.unit == 'metric':
+        elif self.unit == "metric":
             pass
         else:
-            raise ValueError(
-                'Wrong Unit Type. Unit Must be imperial or metric')
+            raise ValueError("Wrong Unit Type. Unit Must be imperial or metric")
 
-        speed_of_sound = 331.3 * math.sqrt(1+(self.temperature / 273.15))
+        speed_of_sound = 331.3 * math.sqrt(1 + (self.temperature / 273.15))
         sample = []
         # setup input/output pins
         GPIO.setwarnings(False)
         GPIO.setmode(self.gpio_mode)
         GPIO.setup(self.trig_pin, GPIO.OUT)
         GPIO.setup(self.echo_pin, GPIO.IN)
-        
+
         for distance_reading in range(sample_size):
             GPIO.output(self.trig_pin, GPIO.LOW)
             time.sleep(sample_wait)
@@ -87,7 +88,7 @@ class Measurement(object):
                     sonar_signal_off = time.time()
                     echo_status_counter += 1
                 else:
-                    raise SystemError('Echo pulse was not received')
+                    raise SystemError("Echo pulse was not received")
             while GPIO.input(self.echo_pin) == 1:
                 sonar_signal_on = time.time()
             time_passed = sonar_signal_on - sonar_signal_off
@@ -99,36 +100,64 @@ class Measurement(object):
         GPIO.cleanup((self.trig_pin, self.echo_pin))
         return sorted_sample[sample_size // 2]
 
+    def depth(self, median_reading, hole_depth):
+        """Calculate the rounded depth of a liquid. hole_depth is the
+        distance from the sensor to the bottom of the hole."""
+        if self.unit == "metric":
+            return round(hole_depth - median_reading, self.round_to)
+        if self.unit == "imperial":
+            return round(hole_depth - (median_reading * 0.394), self.round_to)
 
-        
-    
+    def distance(self, median_reading):
+        """Calculate the rounded from the sensor to an oject."""
+        if self.unit == "metric":
+            return round(median_reading, self.round_to)
+        if self.unit == "imperial":
+            return round(median_reading * 0.394, self.round_to)
+
+    def cylinder_volume_side(self, median_reading, other):
+        """Calculate the liquid volume of a cylinder on its side"""
+        pass
+
+    def cylinder_volume_standing(self, median_reading, other):
+        """Calculate the liquid volume of a standing cylinder"""
+        pass
+
+    def box_volume(self, depth_metric, width, length):
+        """Calculate amount of liquid in a box shape container"""
+        if self.unit == "metric":
+            volume = width * length * depth_metric
+            return volume / 1000
+        if self.unit == "imperial":
+            volume = width * length * depth_imperial
+            return volume / 231
+
     def depth_metric(self, median_reading, hole_depth):
-        '''Calculate the rounded metric depth of a liquid. hole_depth is the
-        distance, in cm's, from the sensor to the bottom of the hole.'''
+        """This method is deprecated, use depth instead."""
+        warnings.warn("use depth method instead", DeprecationWarning)
         return round(hole_depth - median_reading, self.round_to)
 
     def depth_imperial(self, median_reading, hole_depth):
-        '''Calculate the rounded imperial depth of a liquid. hole_depth is the
-        distance, in inches, from the sensor to the bottom of the hole.'''
+        """This method is deprecated, use depth instead."""
+        warnings.warn("use depth method instead", DeprecationWarning)
         return round(hole_depth - (median_reading * 0.394), self.round_to)
 
     def distance_metric(self, median_reading):
-        '''Calculate the rounded metric distance, in cm's, from the sensor
-        to an object'''
+        """This method is deprecated, use distance instead."""
+        warnings.warn("use distance method instead", DeprecationWarning)
         return round(median_reading, self.round_to)
 
     def distance_imperial(self, median_reading):
-        '''Calculate the rounded imperial distance, in inches, from the sensor
-        to an oject.'''
+        """This method is deprecated, use distance instead."""
+        warnings.warn("use distance method instead", DeprecationWarning)
         return round(median_reading * 0.394, self.round_to)
 
 
-
 def basic_distance(trig_pin, echo_pin, celsius=20):
-    '''Return an unformatted distance in cm's as read directly from
-    RPi.GPIO.'''
+    """Return an unformatted distance in cm's as read directly from
+    RPi.GPIO."""
 
-    speed_of_sound = 331.3 * math.sqrt(1+(celsius / 273.15))
+    speed_of_sound = 331.3 * math.sqrt(1 + (celsius / 273.15))
     GPIO.setup(trig_pin, GPIO.OUT)
     GPIO.setup(echo_pin, GPIO.IN)
     GPIO.output(trig_pin, GPIO.LOW)
@@ -142,7 +171,7 @@ def basic_distance(trig_pin, echo_pin, celsius=20):
             sonar_signal_off = time.time()
             echo_status_counter += 1
         else:
-            raise SystemError('Echo pulse was not received')
+            raise SystemError("Echo pulse was not received")
     while GPIO.input(echo_pin) == 1:
         sonar_signal_on = time.time()
 
