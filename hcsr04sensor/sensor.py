@@ -20,19 +20,12 @@ class Measurement(object):
     """
 
     def __init__(
-        self,
-        trig_pin,
-        echo_pin,
-        temperature=20,
-        unit="metric",
-        round_to=1,
-        gpio_mode=GPIO.BCM,
+        self, trig_pin, echo_pin, temperature=20, unit="metric", gpio_mode=GPIO.BCM
     ):
         self.trig_pin = trig_pin
         self.echo_pin = echo_pin
         self.temperature = temperature
         self.unit = unit
-        self.round_to = round_to
         self.gpio_mode = gpio_mode
 
     def raw_distance(self, sample_size=11, sample_wait=0.1):
@@ -101,56 +94,59 @@ class Measurement(object):
         return sorted_sample[sample_size // 2]
 
     def depth(self, median_reading, hole_depth):
-        """Calculate the rounded depth of a liquid. hole_depth is the
+        """Calculate the depth of a liquid. hole_depth is the
         distance from the sensor to the bottom of the hole."""
         if self.unit == "metric":
-            return round(hole_depth - median_reading, self.round_to)
+            return hole_depth - median_reading
         if self.unit == "imperial":
-            return round(hole_depth - (median_reading * 0.394), self.round_to)
+            return hole_depth - (median_reading * 0.394)
 
     def distance(self, median_reading):
-        """Calculate the rounded from the sensor to an oject."""
+        """Calculate the distance from the sensor to an object."""
         if self.unit == "metric":
-            return round(median_reading, self.round_to)
+            return median_reading
         if self.unit == "imperial":
-            return round(median_reading * 0.394, self.round_to)
+            return median_reading * 0.394
 
     def cylinder_volume_side(self, median_reading, other):
         """Calculate the liquid volume of a cylinder on its side"""
         pass
 
-    def cylinder_volume_standing(self, median_reading, other):
+    def cylinder_volume_standing(self, depth, radius):
         """Calculate the liquid volume of a standing cylinder"""
-        pass
-
-    def box_volume(self, depth_metric, width, length):
-        """Calculate amount of liquid in a box shape container"""
+        volume = 3.14 * radius * radius * depth
         if self.unit == "metric":
-            volume = width * length * depth_metric
+            return volume / 1000
+        else:
+            return volume / 231
+
+    def box_volume(self, depth, width, length):
+        """Calculate amount of liquid in a box shape container"""
+        volume = width * length * depth
+        if self.unit == "metric":
             return volume / 1000
         if self.unit == "imperial":
-            volume = width * length * depth_imperial
             return volume / 231
 
     def depth_metric(self, median_reading, hole_depth):
-        """This method is deprecated, use depth instead."""
+        """This method is deprecated, use depth method instead."""
         warnings.warn("use depth method instead", DeprecationWarning)
-        return round(hole_depth - median_reading, self.round_to)
+        return hole_depth - median_reading
 
     def depth_imperial(self, median_reading, hole_depth):
-        """This method is deprecated, use depth instead."""
+        """This method is deprecated, use depth method instead."""
         warnings.warn("use depth method instead", DeprecationWarning)
-        return round(hole_depth - (median_reading * 0.394), self.round_to)
+        return hole_depth - (median_reading * 0.394)
 
     def distance_metric(self, median_reading):
-        """This method is deprecated, use distance instead."""
+        """This method is deprecated, use distance method instead."""
         warnings.warn("use distance method instead", DeprecationWarning)
-        return round(median_reading, self.round_to)
+        return median_reading
 
     def distance_imperial(self, median_reading):
         """This method is deprecated, use distance instead."""
         warnings.warn("use distance method instead", DeprecationWarning)
-        return round(median_reading * 0.394, self.round_to)
+        return median_reading * 0.394
 
 
 def basic_distance(trig_pin, echo_pin, celsius=20):
