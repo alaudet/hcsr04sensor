@@ -1,6 +1,18 @@
 Changelog
 =========
 
+Version 1.6
+- Remove rounding from library. Must now be handled by your application
+- Deprecated functions (will be removed in future versions)
+    depth_metric, depth_imperial, distance_metric, distance_imperial
+    have been replaced with depth and distance
+- Add method to calculate the liquid volume of a standing cylinder (litres/gallons)
+- Add method to calculate the liquid volume of a cylinder on its side (litres/gallons)
+- Add method to calculate the liquid volume of an elliptical standing cylinder (litres/gallons)
+- Changes to recipes to remove rounding
+- Change to hcsr04.py to remove rounding
+- Add recipe for standing cylinder volume
+
 Version 1.5.3
 Add a static basic_distance function to sensor.py. This was added by request.
 See README for details

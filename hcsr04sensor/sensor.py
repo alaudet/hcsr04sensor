@@ -27,6 +27,7 @@ class Measurement(object):
         self.temperature = temperature
         self.unit = unit
         self.gpio_mode = gpio_mode
+        self.pi = math.pin
 
     def raw_distance(self, sample_size=11, sample_wait=0.1):
         """Return an error corrected unrounded distance, in cm, of an object 
@@ -98,34 +99,59 @@ class Measurement(object):
         distance from the sensor to the bottom of the hole."""
         if self.unit == "metric":
             return hole_depth - median_reading
-        if self.unit == "imperial":
+        else:
             return hole_depth - (median_reading * 0.394)
 
     def distance(self, median_reading):
         """Calculate the distance from the sensor to an object."""
-        if self.unit == "metric":
-            return median_reading
         if self.unit == "imperial":
             return median_reading * 0.394
+        else:
+            # don't need this method if using metric. Use raw_distance
+            # instead.  But it will return median_reading anyway if used.
+            return median_reading
 
-    def cylinder_volume_side(self, median_reading, other):
+    def cylinder_volume_side(self, depth, height, radius):
         """Calculate the liquid volume of a cylinder on its side"""
-        pass
+
+        if depth > (radius * 2) or depth < 0:
+            raise ValueError(
+                "Depth must be less than diameter (radius * 2) and not less than 0"
+            )
+
+        volume = height * (
+            (radius * radius * math.acos((radius - depth) / radius))
+            - (radius - depth) * math.sqrt((2 * depth * radius) - (depth * depth))
+        )
+        if self.unit == "metric":
+            return volume / 1000
+        else:
+            return volume / 231
 
     def cylinder_volume_standing(self, depth, radius):
         """Calculate the liquid volume of a standing cylinder"""
-        volume = 3.14 * radius * radius * depth
+
+        volume = self.pi * radius * radius * depth
+        if self.unit == "metric":
+            return volume / 1000
+        else:
+            return volume / 231
+
+    def elliptical_cylinder_volume(self, depth, semi_maj_axis, semi_min_axis):
+        """Calculate the liquid volume of a standing elliptical cylinder"""
+
+        volume = self.pi * semi_maj_axis * semi_min_axis * depth
         if self.unit == "metric":
             return volume / 1000
         else:
             return volume / 231
 
     def box_volume(self, depth, width, length):
-        """Calculate amount of liquid in a box shape container"""
+        """Calculate amount of liquid in a square or rectangle shape container"""
         volume = width * length * depth
         if self.unit == "metric":
             return volume / 1000
-        if self.unit == "imperial":
+        else:
             return volume / 231
 
     def depth_metric(self, median_reading, hole_depth):
@@ -173,4 +199,3 @@ def basic_distance(trig_pin, echo_pin, celsius=20):
 
     time_passed = sonar_signal_on - sonar_signal_off
     return time_passed * ((speed_of_sound * 100) / 2)
-
