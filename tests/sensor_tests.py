@@ -18,19 +18,17 @@ def raw_distance():
 
 def test_measurement():
     """Test that object is being created properly."""
-    value = Measurement(TRIG_PIN, ECHO_PIN, 25, "metric", 2, gpio_mode=GPIO_MODE)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 25, "metric", gpio_mode=GPIO_MODE)
     value_defaults = Measurement(TRIG_PIN, ECHO_PIN)
     assert_equal(isinstance(value, Measurement), True)
     assert_equal(value.trig_pin, TRIG_PIN)
     assert_equal(value.echo_pin, ECHO_PIN)
     assert_equal(value.temperature, 25)
     assert_equal(value.unit, "metric")
-    assert_equal(value.round_to, 2)
     assert_equal(value_defaults.trig_pin, TRIG_PIN)
     assert_equal(value_defaults.echo_pin, ECHO_PIN)
     assert_equal(value_defaults.temperature, 20)
     assert_equal(value_defaults.unit, "metric")
-    assert_equal(value_defaults.round_to, 1)
 
 
 def test_imperial_temperature_and_speed_of_sound():
@@ -41,7 +39,6 @@ def test_imperial_temperature_and_speed_of_sound():
     speed_of_sound = 331.3 * math.sqrt(1 + (value.temperature / 273.15))
     assert_equal(value.temperature, 20.0016)
     assert_equal(value.unit, "imperial")
-    assert_equal(value.round_to, 1)
     assert type(raw_measurement) == float
     assert_equal(speed_of_sound, 343.21555930656075)
 
@@ -57,34 +54,27 @@ def test_imperial_measurements():
     imperial_depth = value.depth_imperial(raw_measurement, hole_depth)
 
     assert type(imperial_distance) == float
-    assert_equal(imperial_distance, 10.4)
-    assert_equal(imperial_depth, 14.6)
+    assert_equal(imperial_distance, 10.423098549324001)
+    assert_equal(imperial_depth, 14.576901450675999)
 
 
 def test_metric_measurements():
     """Test that a metric measurement is what you would expect with a precise
     raw_measurement."""
-    value = Measurement(TRIG_PIN, ECHO_PIN, 20, "metric", 2, gpio_mode=GPIO_MODE)
-    value_defaults = Measurement(TRIG_PIN, ECHO_PIN)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, "metric", gpio_mode=GPIO_MODE)
     raw_measurement = 48.80804985408
     hole_depth = 72
 
     metric_distance = value.distance_metric(raw_measurement)
     metric_depth = value.depth_metric(raw_measurement, hole_depth)
 
-    assert_equal(metric_distance, 48.81)
-    assert_equal(metric_depth, 23.19)
-
-    metric_distance = value_defaults.distance_metric(raw_measurement)
-    metric_depth = value_defaults.depth_metric(raw_measurement, hole_depth)
-
-    assert_equal(metric_distance, 48.8)
-    assert_equal(metric_depth, 23.2)
+    assert_equal(metric_distance, 48.80804985408)
+    assert_equal(metric_depth, 23.191950145920003)
 
 
 def test_different_sample_size():
     """Test that a user defined sample_size works correctly."""
-    value = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial", 1, gpio_mode=GPIO_MODE)
+    value = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial", gpio_mode=GPIO_MODE)
     raw_measurement1 = value.raw_distance(sample_size=1)
     raw_measurement2 = value.raw_distance(sample_size=4)
     raw_measurement3 = value.raw_distance(sample_size=11)
@@ -136,20 +126,76 @@ def test_raises_exception_no_pulse():
 
 
 def test_depth():
-    pass
+    """Test the depth of a liquid in cm and inches"""
+
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, "metric", gpio_mode=GPIO_MODE)
+    raw_measurement = 48.80804985408
+    hole_depth = 72
+
+    metric_depth = value.depth(raw_measurement, hole_depth)
+
+    assert_equal(metric_depth, 23.191950145920003)
+
+    value2 = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial", gpio_mode=GPIO_MODE)
+    hole_depth_inches = hole_depth * 0.394
+
+    imperial_depth = value2.depth(raw_measurement, hole_depth_inches)
+    assert_equal(imperial_depth, 9.137628357492481)
 
 
 def test_distance():
-    pass
+    """Test the distance measurement in cm and inches"""
+
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, "metric", gpio_mode=GPIO_MODE)
+    raw_measurement = 48.80804985408
+
+    metric_distance = value.distance(raw_measurement)
+    assert_equal(metric_distance, 48.80804985408)
+
+    value2 = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial", gpio_mode=GPIO_MODE)
+    imperial_distance = value2.distance(raw_measurement)
+    assert_equal(imperial_distance, 19.23037164250752)
 
 
 def test_cylinder_volume_side():
-    pass
+    """Test the volume of liquid in a cylinder resting on its side in both
+    litres and gallons"""
+
+    value = Measurement(TRIG_PIN, ECHO_PIN, 20, "metric", gpio_mode=GPIO_MODE)
+    depth = 20
+    height = 120
+    radius = 45
+
+    cylinder_volume = value.cylinder_volume_side(depth, height, radius)
+    assert_equal(cylinder_volume, 126.31926004538707)
+
+    value2 = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial", gpio_mode=GPIO_MODE)
+    depthi = 17
+    heighti = 27
+    radiusi = 18
+    cylinder_volume_g = value2.cylinder_volume_side(depthi, heighti, radiusi)
+    assert_equal(cylinder_volume_g, 55.28063419280857)
 
 
 def test_cylinder_volume_standing():
-    pass
+    """Test the volume of a liquid in a standing cylinder in litres and gallons"""
+
+    depth = 50
+    radius = 30
+    value = Measurement(TRIG_PIN, ECHO_PIN)
+    cylinder_volume = value.cylinder_volume_standing(depth, radius)
+    assert_equal(cylinder_volume, 141.3716694115407)
+
+    depthi = 24
+    radiusi = 12
+    value2 = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial")
+    cylinder_volume_g = value2.cylinder_volume_standing(depthi, radiusi)
+    assert_equal(cylinder_volume_g, 47.00149009007067)
 
 
 def test_box_volume():
+    pass
+
+
+def test_elliptical_cylinder_volume():
     pass

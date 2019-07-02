@@ -27,7 +27,7 @@ class Measurement(object):
         self.temperature = temperature
         self.unit = unit
         self.gpio_mode = gpio_mode
-        self.pi = math.pin
+        self.pi = math.pi
 
     def raw_distance(self, sample_size=11, sample_wait=0.1):
         """Return an error corrected unrounded distance, in cm, of an object 
