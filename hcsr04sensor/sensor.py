@@ -146,13 +146,62 @@ class Measurement(object):
         else:
             return volume / 231
 
-    def box_volume(self, depth, width, length):
-        """Calculate amount of liquid in a square or rectangle shape container"""
+    def elliptical_side_cylinder_volume(self, depth, height, width, length):
+        """Calculate the liquid volume of an elliptical cylinder on its side"""
+        s_maj_a = width / 2  # semi major axis
+        s_min_a = height / 2  # semi minor axis
+        if depth > height or depth < 0:
+            raise ValueError("Depth must be less than the height and not less than 0")
+        volume = (
+            length
+            * (s_maj_a / s_min_a)
+            * (
+                (self.pi * (s_min_a ** 2)) / 2
+                + (depth - s_min_a)
+                * math.sqrt((s_min_a ** 2) - ((depth - s_min_a) ** 2))
+                + (s_min_a ** 2) * math.asin(depth / s_min_a - 1)
+            )
+        )
+
+        if self.unit == "metric":
+            return volume / 1000
+        else:
+            return volume / 231
+
+    def cuboid_volume(self, depth, width, length):
+        """Calculate amount of liquid in a cuboid
+        (square or rectangle shaped container)"""
         volume = width * length * depth
         if self.unit == "metric":
             return volume / 1000
         else:
             return volume / 231
+
+    @staticmethod
+    def basic_distance(trig_pin, echo_pin, celsius=20):
+        """Return an unformatted distance in cm's as read directly from
+        RPi.GPIO."""
+
+        speed_of_sound = 331.3 * math.sqrt(1 + (celsius / 273.15))
+        GPIO.setup(trig_pin, GPIO.OUT)
+        GPIO.setup(echo_pin, GPIO.IN)
+        GPIO.output(trig_pin, GPIO.LOW)
+        time.sleep(0.1)
+        GPIO.output(trig_pin, True)
+        time.sleep(0.00001)
+        GPIO.output(trig_pin, False)
+        echo_status_counter = 1
+        while GPIO.input(echo_pin) == 0:
+            if echo_status_counter < 1000:
+                sonar_signal_off = time.time()
+                echo_status_counter += 1
+            else:
+                raise SystemError("Echo pulse was not received")
+        while GPIO.input(echo_pin) == 1:
+            sonar_signal_on = time.time()
+
+        time_passed = sonar_signal_on - sonar_signal_off
+        return time_passed * ((speed_of_sound * 100) / 2)
 
     def depth_metric(self, median_reading, hole_depth):
         """This method is deprecated, use depth method instead."""
@@ -173,29 +222,3 @@ class Measurement(object):
         """This method is deprecated, use distance instead."""
         warnings.warn("use distance method instead", DeprecationWarning)
         return median_reading * 0.394
-
-
-def basic_distance(trig_pin, echo_pin, celsius=20):
-    """Return an unformatted distance in cm's as read directly from
-    RPi.GPIO."""
-
-    speed_of_sound = 331.3 * math.sqrt(1 + (celsius / 273.15))
-    GPIO.setup(trig_pin, GPIO.OUT)
-    GPIO.setup(echo_pin, GPIO.IN)
-    GPIO.output(trig_pin, GPIO.LOW)
-    time.sleep(0.1)
-    GPIO.output(trig_pin, True)
-    time.sleep(0.00001)
-    GPIO.output(trig_pin, False)
-    echo_status_counter = 1
-    while GPIO.input(echo_pin) == 0:
-        if echo_status_counter < 1000:
-            sonar_signal_off = time.time()
-            echo_status_counter += 1
-        else:
-            raise SystemError("Echo pulse was not received")
-    while GPIO.input(echo_pin) == 1:
-        sonar_signal_on = time.time()
-
-    time_passed = sonar_signal_on - sonar_signal_off
-    return time_passed * ((speed_of_sound * 100) / 2)

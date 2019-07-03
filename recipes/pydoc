@@ -1,0 +1,105 @@
+Help on module hcsr04sensor.sensor in hcsr04sensor:
+
+NAME
+    hcsr04sensor.sensor
+
+DESCRIPTION
+    Measure the distance or depth with an HCSR04 Ultrasonic sound 
+    sensor and a Raspberry Pi.  Imperial and Metric measurements are available
+
+CLASSES
+    builtins.object
+        Measurement
+    
+    class Measurement(builtins.object)
+     |  Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
+     |  the GPIO pins of a Raspberry Pi.
+     |  
+     |  Metric values are used by default. For imperial values use
+     |  unit='imperial'
+     |  temperature=<Desired temperature in Fahrenheit>
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, trig_pin, echo_pin, temperature=20, unit='metric', gpio_mode=11)
+     |  
+     |  cuboid_volume(self, depth, width, length)
+     |      Calculate amount of liquid in a cuboid
+     |      (square or rectangle shaped container)
+     |  
+     |  cylinder_volume_side(self, depth, height, radius)
+     |      Calculate the liquid volume of a cylinder on its side
+     |  
+     |  cylinder_volume_standing(self, depth, radius)
+     |      Calculate the liquid volume of a standing cylinder
+     |  
+     |  depth(self, median_reading, hole_depth)
+     |      Calculate the depth of a liquid. hole_depth is the
+     |      distance from the sensor to the bottom of the hole.
+     |  
+     |  depth_imperial(self, median_reading, hole_depth)
+     |      This method is deprecated, use depth method instead.
+     |  
+     |  depth_metric(self, median_reading, hole_depth)
+     |      This method is deprecated, use depth method instead.
+     |  
+     |  distance(self, median_reading)
+     |      Calculate the distance from the sensor to an object.
+     |  
+     |  distance_imperial(self, median_reading)
+     |      This method is deprecated, use distance instead.
+     |  
+     |  distance_metric(self, median_reading)
+     |      This method is deprecated, use distance method instead.
+     |  
+     |  elliptical_cylinder_volume(self, depth, semi_maj_axis, semi_min_axis)
+     |      Calculate the liquid volume of a standing elliptical cylinder
+     |  
+     |  elliptical_side_cylinder_volume(self, depth, height, width, length)
+     |      Calculate the liquid volume of an elliptical cylinder on its side
+     |  
+     |  raw_distance(self, sample_size=11, sample_wait=0.1)
+     |      Return an error corrected unrounded distance, in cm, of an object 
+     |      adjusted for temperature in Celcius.  The distance calculated
+     |      is the median value of a sample of `sample_size` readings.
+     |      
+     |      
+     |      Speed of readings is a result of two variables.  The sample_size
+     |      per reading and the sample_wait (interval between individual samples).
+     |      
+     |      Example: To use a sample size of 5 instead of 11 will increase the 
+     |      speed of your reading but could increase variance in readings;
+     |      
+     |      value = sensor.Measurement(trig_pin, echo_pin)
+     |      r = value.raw_distance(sample_size=5)
+     |      
+     |      Adjusting the interval between individual samples can also
+     |      increase the speed of the reading.  Increasing the speed will also
+     |      increase CPU usage.  Setting it too low will cause errors.  A default
+     |      of sample_wait=0.1 is a good balance between speed and minimizing 
+     |      CPU usage.  It is also a safe setting that should not cause errors.
+     |      
+     |      e.g.
+     |      
+     |      r = value.raw_distance(sample_wait=0.03)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods defined here:
+     |  
+     |  basic_distance(trig_pin, echo_pin, celsius=20)
+     |      Return an unformatted distance in cm's as read directly from
+     |      RPi.GPIO.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FILE
+    /home/pi/projects/hcsr04sensor/hcsr04sensor/sensor.py
+
+

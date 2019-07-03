@@ -1,7 +1,7 @@
 from nose.tools import *
 import math
 import RPi.GPIO as GPIO
-from hcsr04sensor.sensor import Measurement, basic_distance
+from hcsr04sensor.sensor import Measurement
 
 TRIG_PIN = 17
 ECHO_PIN = 27
@@ -96,13 +96,14 @@ def test_different_sample_wait():
     assert type(raw_measurement4) == float
 
 
-def test_basic_distancei_bcm():
+def test_basic_distance_bcm():
     """Test that float returned with default, positive and negative temps"""
     GPIO.setmode(GPIO.BCM)
-    basic_reading = basic_distance(TRIG_PIN, ECHO_PIN)
-    basic_reading2 = basic_distance(TRIG_PIN, ECHO_PIN, celsius=10)
-    basic_reading3 = basic_distance(TRIG_PIN, ECHO_PIN, celsius=0)
-    basic_reading4 = basic_distance(TRIG_PIN, ECHO_PIN, celsius=-100)
+    x = Measurement
+    basic_reading = x.basic_distance(TRIG_PIN, ECHO_PIN)
+    basic_reading2 = x.basic_distance(TRIG_PIN, ECHO_PIN, celsius=10)
+    basic_reading3 = x.basic_distance(TRIG_PIN, ECHO_PIN, celsius=0)
+    basic_reading4 = x.basic_distance(TRIG_PIN, ECHO_PIN, celsius=-100)
     assert type(basic_reading) == float
     assert type(basic_reading2) == float
     assert type(basic_reading3) == float
@@ -193,9 +194,48 @@ def test_cylinder_volume_standing():
     assert_equal(cylinder_volume_g, 47.00149009007067)
 
 
-def test_box_volume():
-    pass
+def test_cuboid_volume():
+    """Test the volume of a liquid in a cuboid in litres and gallons"""
+    value = Measurement(17, 27)
+    depth = 53
+    width = 32
+    length = 21
+    cuboid_volume = value.cuboid_volume(depth, width, length)
+    assert_equal(cuboid_volume, 35.616)
+
+    value2 = Measurement(17, 27, 68, "imperial")
+    cuboid_volume_g = value2.cuboid_volume(depth, width, length)
+    assert_equal(cuboid_volume_g, 154.1818181818182)
 
 
 def test_elliptical_cylinder_volume():
-    pass
+    """Test the volume of a liquid in a elliptical cylinder in litres and 
+    gallons"""
+    depth = 50
+    semi_maj_axis = 24
+    semi_min_axis = 15
+    value = Measurement(17, 27)
+    e_cyl_vol = value.elliptical_cylinder_volume(depth, semi_maj_axis, semi_min_axis)
+    assert_equal(e_cyl_vol, 56.548667764616276)
+
+    value2 = Measurement(17, 27, 68, "imperial")
+    e_cyl_vol_g = value2.elliptical_cylinder_volume(depth, semi_maj_axis, semi_min_axis)
+    assert_equal(e_cyl_vol_g, 244.79942755245142)
+
+
+def test_elliptical_side_cylinder_volume():
+    """Test the volume of a liquid in a elliptical cylinder on its side in 
+    litres and gallons"""
+    depth = 28
+    height = 40
+    width = 30
+    length = 100
+    value = Measurement(17, 27)
+    e_cyl_vol_side = value.elliptical_side_cylinder_volume(depth, height, width, length)
+    assert_equal(e_cyl_vol_side, 70.46757685376555)
+
+    value2 = Measurement(17, 27, 68, "imperial")
+    e_cyl_vol_side_g = value2.elliptical_side_cylinder_volume(
+        depth, height, width, length
+    )
+    assert_equal(e_cyl_vol_side_g, 305.05444525439634)

@@ -6,12 +6,20 @@ Version 1.6
 - Deprecated functions (will be removed in future versions)
     depth_metric, depth_imperial, distance_metric, distance_imperial
     have been replaced with depth and distance
-- Add method to calculate the liquid volume of a standing cylinder (litres/gallons)
-- Add method to calculate the liquid volume of a cylinder on its side (litres/gallons)
-- Add method to calculate the liquid volume of an elliptical standing cylinder (litres/gallons)
+- Add methods to calculate:
+    - liquid volume of a cuboid (square or rectangular)
+    - liquid volume of a standing cylinder
+    - liquid volume of a cylinder on its side
+    - liquid volume of an elliptical standing cylinder
+    - liquid volume of an elliptical cylinder on its side
+
+- basic_distance now a staticmethod on the Measurement class. This method
+  reads directly from RPi.GPIO. No sample sizes or speeds. Metric only.
+  No pin cleanups.  That should all be handled by your code.
 - Changes to recipes to remove rounding
 - Change to hcsr04.py to remove rounding
-- Add recipe for standing cylinder volume
+- Add recipes for standing cylinder volume and cylinder volume side
+- Add tests for all measurements
 
 Version 1.5.3
 Add a static basic_distance function to sensor.py. This was added by request.
