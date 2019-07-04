@@ -21,7 +21,7 @@ CLASSES
      |  
      |  Methods defined here:
      |  
-     |  __init__(self, trig_pin, echo_pin, temperature=20, unit='metric', gpio_mode=11)
+     |  __init__(self, trig_pin, echo_pin, temperature=20, unit='metric', gpio_mode=GPIO.BCM)
      |  
      |  cuboid_volume(self, depth, width, length)
      |      Calculate amount of liquid in a cuboid
