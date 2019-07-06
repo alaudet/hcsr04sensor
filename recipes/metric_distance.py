@@ -12,23 +12,21 @@ def main():
     echo_pin = 27
     # Default values
     # unit = 'metric'
-    # temperature = 20
-    # round_to = 1
+    # temperature = 20 (room temp in Celsius)
 
     #  Create a distance reading with the hcsr04 sensor module
     value = sensor.Measurement(trig_pin, echo_pin)
     raw_measurement = value.raw_distance()
 
-    # To overide default values you can pass the following to value
+    # To overide default room temp you can pass the following to value
+    # This can be combined with a temperature sensor for cold weather apps.
     # value = sensor.Measurement(trig_pin,
     #                            echo_pin,
-    #                            temperature=10,
-    #                            round_to=2
+    #                            temperature=2,
     #                            )
 
     # Calculate the distance in centimeters
-    metric_distance = value.distance(raw_measurement)
-    print("The Distance = {} centimeters".format(metric_distance))
+    print("The Distance = {} centimeters".format(round(raw_measurement, 1)))
 
 
 if __name__ == "__main__":

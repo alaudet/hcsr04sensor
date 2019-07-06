@@ -14,7 +14,6 @@ def main():
     # Default values
     # unit = 'metric'
     # temperature = 20
-    # round_to = 1
 
     hole_depth = 80  # centimeters
 
@@ -28,13 +27,12 @@ def main():
     # value = sensor.Measurement(trig_pin,
     #                            echo_pin,
     #                            temperature=10,
-    #                            round_to=2
     #                            )
 
     # Calculate the liquid depth, in centimeters, of a hole filled
     # with liquid
     liquid_depth = value.depth(raw_measurement, hole_depth)
-    print("Depth = {} centimeters".format(liquid_depth))
+    print("Depth = {} centimeters".format(round(liquid_depth, 1)))
 
 
 if __name__ == "__main__":
