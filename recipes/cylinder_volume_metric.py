@@ -9,11 +9,10 @@ echo_pin = 27
 # gpio_mode = GPIO.BCM
 
 # Get litres in a cylinder
-cyl_depth_metric = 60  # centimeters
+cyl_depth_metric = 96  # centimeters
 cyl_radius_metric = 15  # centimeters
 value = sensor.Measurement(trig_pin, echo_pin)
 distance = value.raw_distance()
 water_depth_metric = value.depth(distance, cyl_depth_metric)
 volume_litres = value.cylinder_volume_standing(water_depth_metric, cyl_radius_metric)
 print("The liquid volume of the cylinder is {} litres".format(round(volume_litres, 1)))
-

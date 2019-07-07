@@ -112,7 +112,7 @@ class Measurement(object):
             # instead.  But it will return median_reading anyway if used.
             return median_reading
 
-    def cylinder_volume_side(self, depth, height, radius):
+    def cylinder_volume_side(self, depth, length, radius):
         """Calculate the liquid volume of a cylinder on its side"""
 
         if depth > (radius * 2) or depth < 0:
@@ -120,7 +120,7 @@ class Measurement(object):
                 "Depth must be less than diameter (radius * 2) and not less than 0"
             )
 
-        volume = height * (
+        volume = length * (
             (radius * radius * math.acos((radius - depth) / radius))
             - (radius - depth) * math.sqrt((2 * depth * radius) - (depth * depth))
         )

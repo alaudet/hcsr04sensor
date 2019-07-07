@@ -5,8 +5,8 @@ trig_pin = 17
 echo_pin = 27
 temperature = 68  # Farenheit
 unit = "imperial"
-bottom_depth = 55  # inches from the sensor to the bottom of the cylinder
-cyl_radius = 10  # diameter / 2
+bottom_depth = 38  # inches from the sensor to the bottom of the cylinder
+cyl_radius = 15  # diameter / 2
 
 # Get gallons in a cylinder
 value = sensor.Measurement(trig_pin, echo_pin, temperature, unit)
