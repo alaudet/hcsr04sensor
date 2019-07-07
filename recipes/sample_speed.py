@@ -3,11 +3,12 @@ from hcsr04sensor import sensor
 # Created by Al Audet
 # MIT License
 
+
 def main():
-    '''Calculate the distance of an object in centimeters using a HCSR04 sensor
+    """Calculate the distance of an object in centimeters using a HCSR04 sensor
        and a Raspberry Pi. This script allows for a quicker reading by
        decreasing the number of samples and forcing the readings to be
-       taken at quicker intervals.'''
+       taken at quicker intervals."""
 
     trig_pin = 17
     echo_pin = 27
@@ -20,15 +21,15 @@ def main():
     # The effect of reducing sample_size is larger variance in readings
     # The effect of lowering sample_wait is higher cpu usage and sensor
     # instability if you push it with too fast of a value.
-    # These two options have been added to allow you to tweak a 
+    # These two options have been added to allow you to tweak a
     # more optimal setting for your application.
 
     # e.g.
     raw_measurement = value.raw_distance(sample_size=5, sample_wait=0.03)
 
     # Calculate the distance in centimeters
-    metric_distance = value.distance_metric(raw_measurement)
-    print("The Distance = {} centimeters".format(metric_distance))
+    print("The Distance = {} centimeters".format(round(raw_measurement, 1)))
+
 
 if __name__ == "__main__":
     main()

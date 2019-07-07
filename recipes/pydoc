@@ -71,7 +71,7 @@ CLASSES
      |      speed of your reading but could increase variance in readings;
      |      
      |      value = sensor.Measurement(trig_pin, echo_pin)
-     |      r = value.raw_distance(sample_size=5)
+    litres |      r = value.raw_distance(sample_size=5)
      |      
      |      Adjusting the interval between individual samples can also
      |      increase the speed of the reading.  Increasing the speed will also
