@@ -27,7 +27,7 @@ CLASSES
      |      Calculate amount of liquid in a cuboid
      |      (square or rectangle shaped container)
      |  
-     |  cylinder_volume_side(self, depth, height, radius)
+     |  cylinder_volume_side(self, depth, length, radius)
      |      Calculate the liquid volume of a cylinder on its side
      |  
      |  cylinder_volume_standing(self, depth, radius)
@@ -71,7 +71,7 @@ CLASSES
      |      speed of your reading but could increase variance in readings;
      |      
      |      value = sensor.Measurement(trig_pin, echo_pin)
-    litres |      r = value.raw_distance(sample_size=5)
+     |      r = value.raw_distance(sample_size=5)
      |      
      |      Adjusting the interval between individual samples can also
      |      increase the speed of the reading.  Increasing the speed will also
@@ -98,6 +98,9 @@ CLASSES
      |  
      |  __weakref__
      |      list of weak references to the object (if defined)
+
+DATA
+    division = _Feature((2, 2, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 8192...
 
 FILE
     /home/pi/projects/hcsr04sensor/hcsr04sensor/sensor.py

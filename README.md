@@ -1,32 +1,23 @@
-HC-SR04 Ultrasonic Sensor on Raspberry Pi
-=========================================
-
+# HC-SR04 Ultrasonic Sensor on Raspberry Pi
 
 [Hcsr04sensor Web Page](https://www.linuxnorth.org/hcsr04sensor)
-
 
 Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor and a Raspberry Pi. Instructions assume that you are using Raspbian Linux.
 
 This module also works with the JSN-SR04T waterproof sound sensor.
 
-
-Python2 Install
-===============
-
-
-    sudo apt-get install python-pip
-    sudo pip install hcsr04sensor
-
-
-Python3 Install
-===============
+## Python3 Install
 
     sudo apt-get install python3-pip
     sudo pip3 install hcsr04sensor
 
+## Python2 version of hcsr04sensor no longer supported after January 1 2020
 
-Description
-===========
+    sudo apt-get install python-pip
+    sudo pip install hcsr04sensor
+
+## Description
+
 The module does the following;
 
 * Returns an error corrected distance by using the median reading of a sorted
@@ -50,8 +41,6 @@ The module does the following;
   
   This module uses BCM pin values.  See the Raspberry Pi pin layout documentation for your model.
 
-* Rounds the value to a specified decimal place.
-
 * Uses BCM pin values by default.  BOARD pin values are supported.
 
 * Adjusts the reading based on temperature by adjusting the speed of sound.
@@ -62,33 +51,34 @@ The module does the following;
 
 * Raises an exception if a faulty cable or sensor prevents an echo pulse from being received.
 
-Accuracy of Readings
-====================
+* Calculate the volume of different types of containers.  See recipes for examples.
+
+## Accuracy of Readings
 
 If you need highly accurate readings then this module would not be suitable for your project.  In that case you should probably use an Arduino instead of a Raspberry Pi.
 
 Linux is not a Real Time OS so you can expect to get a small variance on each reading, usually within a half cm of the actual value.  I say "usually" because every once in a while you can get a reading that is way out of range.  This is due to the OS executing other tasks before getting your distance reading.  It is why I use a sample of readings.  I can always trust that the median of my sample of 11 readings is good.
 
-Highly accurate readings are not required for some applications, for example I use this module in an application I wrote for a sump pump monitor.  I am not worried about millimeter accuracy for that application.  1 cm variance on a meter deep pit is close enough to alert me to problems.
+Highly accurate readings are not required for some applications. For example I use this module in an application I wrote for a sump pump monitor.  I am not worried about millimeter accuracy for that application.  1 cm variance on a meter deep pit is close enough to alert me to problems.
+
+Another example would be to calculate the water volume of a drinking water well (standing cylinder shape).
+It would not matter if you are a gallon off on a 1000 gallon reading.
 
 
-Distance Limitations
-====================
+## Distance Limitations
 
 The HCSR04 sensor is suited for short distance readings.  The specification manual says it is suitable up to 13 feet.  I have tested it to go further than that, but anything over 12 feet starts having periodic strange readings.
 This module is not suitable for long distances. 
 
 
-Usage
-=====
+## Usage
 
 See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/recipes
 
 Access to Raspberry Pi GPIO pins require elevated priviledges if using version 0.5.11 of RPi.GPIO.  Run example
 scripts with sudo.
 
-Testing the Module
-==================
+## Testing the Module
 
 Added a script that is installed to /usr/local/bin called hcsr04.py.
 This utility does not presently support BOARD pin values.  Use BCM pin values.
@@ -111,44 +101,14 @@ This utility does not presently support BOARD pin values.  Use BCM pin values.
                             11)
 
 
-Take a Basic Reading
-=====================
+## Take a Basic Reading
 
-If you don't want to use a sample of readings for error handling, warnings or pin cleanups I have included a stand alone function that will return a basic metric reading
-without creating a Measurement object.  It returns the exact one-time reading that is provided  by the sensor and Rpi.GPIO.  This allows you to handle all of these things to your own preference in your codei.
+If you don't want to use a sample of readings for error handling, warnings or pin cleanups I have included a static method in the Measurement class that will return a basic metric reading.  It returns the exact one-time reading that is provided  by the sensor and RPi.GPIO.  This allows you to handle all of these things to your own preference in your code.
 
 See the example basic_reading.py script in https://github.com/alaudet/hcsr04sensor/tree/master/recipes
 
 
-Recommended
-===========
-
-To upgrade to version 0.6.x of RPi.GPIO which does not require elevated priviledges you can simply upgrade as follows;
-
-Note: On Raspbian Wheezy you still seem to have to run RPi.GPIO with sudo in version 6.  It works without sudo in 
-Rasbian Jessie which is the latest version of Raspbian.
-
-For Python 2
-
-    sudo pip install -U hcsr04sensor
-
-or
-
-    sudo apt-get upgrade python-rpi.gpio
-
-
-
-
-For Python 3
-
-    sudo pip3 install -U hcsr04sensor
-
-or
-
-    sudo apt-get upgrade python3-rpi.gpio
-
-Contributing
-============
+## Contributing
 
 Contributions to hcsr04sensor are welcome.  Please open an issue in the issue
 tracker prior to a pull request.
@@ -159,8 +119,7 @@ Nose is currently used for testing.  All tests should pass before issuing
 the pull request.
 
 
-Donate
-======
+## Donate
 
 [Your Donation is Appreciated](https://www.linuxnorth.org/donate/)
 
