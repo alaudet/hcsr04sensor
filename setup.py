@@ -6,6 +6,7 @@ setup(
     name="hcsr04sensor",
     version=version,
     description="Module to access the HCSR04 sensor on a Raspberry Pi",
+    long_description_content_type='text/markdown',
     long_description=open("./README.md", "r").read(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
