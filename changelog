@@ -17,6 +17,7 @@ Version 1.6
   reads directly from RPi.GPIO. No sample sizes or speeds. Metric only.
   No pin cleanups.  That should all be handled by your code.
 - Changes to recipes to remove rounding
+- Many new recipes added for different tank types
 - Change to hcsr04.py to remove rounding
 - Add recipes for standing cylinder volume and cylinder volume side
 - Add tests for all measurements

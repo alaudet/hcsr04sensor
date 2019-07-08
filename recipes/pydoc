@@ -47,7 +47,7 @@ CLASSES
      |      Calculate the distance from the sensor to an object.
      |  
      |  distance_imperial(self, median_reading)
-     |      This method is deprecated, use distance instead.
+     |      This method is deprecated, use distance method instead.
      |  
      |  distance_metric(self, median_reading)
      |      This method is deprecated, use distance method instead.

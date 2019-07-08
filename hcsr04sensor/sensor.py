@@ -220,6 +220,6 @@ class Measurement(object):
         return median_reading
 
     def distance_imperial(self, median_reading):
-        """This method is deprecated, use distance instead."""
+        """This method is deprecated, use distance method instead."""
         warnings.warn("use distance method instead", DeprecationWarning)
         return median_reading * 0.394
