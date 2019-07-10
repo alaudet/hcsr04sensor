@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 1.6.1
+- force hcsr04sensor to use a specific version of RPi.GPIO in setup.py.  Currently uses
+RPi.GPIO 0.6.5
+
 Version 1.6
 - Remove rounding from library. Must now be handled by your application
 - Deprecated functions (will be removed in future versions)
