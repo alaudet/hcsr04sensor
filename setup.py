@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = "1.6"
+version = "1.6.1"
 
 setup(
     name="hcsr04sensor",
@@ -25,9 +25,9 @@ setup(
     author="Al Audet",
     author_email="alaudet@linuxnorth.org",
     url="https://www.linuxnorth.org/hcsr04sensor/",
-    download_url="https://github.com/alaudet/hcsr04sensor/releases",
+    download_url="https://github.com/alaudet/hcsr04sensor/releas@es",
     license="MIT License",
     packages=["hcsr04sensor"],
     scripts=["bin/hcsr04.py"],
-    install_requires=["RPi.GPIO"],
+    install_requires=["RPi.GPIO==0.6.5"],
 )

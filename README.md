@@ -21,7 +21,7 @@ This module also works with the JSN-SR04T waterproof sound sensor.
 The module does the following;
 
 * Returns an error corrected distance by using the median reading of a sorted
-  sample. NOTE - The default sample size is 11 readings.  
+  sample. NOTE - The default sample size is 11 readings.
 
   You can specify a
   different sample size by passing sample_size=x  to raw_distance (where x is your desired
@@ -32,13 +32,13 @@ The module does the following;
   second wait time between individual samples.
 
   It is also possible to speed up the readings by passing a lower value to
-  sample_wait in raw_distance.   
+  sample_wait in raw_distance.
 
   The lower the value the quicker the invidual
   samples will be taken.  A default of 0.1 is a safe wait time but this can be
   reduced further.  CPU usage increases as faster readings are taken as well as
   the chance for errors.
-  
+
   This module uses BCM pin values.  See the Raspberry Pi pin layout documentation for your model.
 
 * Uses BCM pin values by default.  BOARD pin values are supported.
@@ -68,7 +68,7 @@ It would not matter if you are a gallon off on a 1000 gallon reading.
 ## Distance Limitations
 
 The HCSR04 sensor is suited for short distance readings.  The specification manual says it is suitable up to 13 feet.  I have tested it to go further than that, but anything over 12 feet starts having periodic strange readings.
-This module is not suitable for long distances. 
+This module is not suitable for long distances.
 
 
 ## Usage
@@ -122,5 +122,3 @@ the pull request.
 ## Donate
 
 [Your Donation is Appreciated](https://www.linuxnorth.org/donate/)
-
-
