@@ -25,7 +25,7 @@ setup(
     author="Al Audet",
     author_email="alaudet@linuxnorth.org",
     url="https://www.linuxnorth.org/hcsr04sensor/",
-    download_url="https://github.com/alaudet/hcsr04sensor/releas@es",
+    download_url="https://github.com/alaudet/hcsr04sensor/releases",
     license="MIT License",
     packages=["hcsr04sensor"],
     scripts=["bin/hcsr04.py"],
