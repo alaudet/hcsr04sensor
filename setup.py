@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = "1.6.1"
+version = "1.6.2"
 
 setup(
     name="hcsr04sensor",
@@ -29,5 +29,5 @@ setup(
     license="MIT License",
     packages=["hcsr04sensor"],
     scripts=["bin/hcsr04.py"],
-    install_requires=["RPi.GPIO==0.6.5"],
+    install_requires=["RPi.GPIO==0.7.0"],
 )
