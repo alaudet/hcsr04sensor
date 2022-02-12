@@ -6,6 +6,8 @@ Calculate distance and depth measurements with an HCSR04 Ultrasonic Sound Sensor
 
 This module also works with the JSN-SR04T waterproof sound sensor.
 
+![wiring](https://www.linuxnorth.org/raspi-sump/images/raspi-sump-wiring.jpg)
+
 ## Python3 Install
 
     sudo apt-get install python3-pip
