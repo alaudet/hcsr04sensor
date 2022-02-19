@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.6.3
+- Removed RPi.GPIO Install required in setup.py and added apt package install to instructions
+  in the README.md
+- Support for bdist_wheel installs of hcsr04sensor
+
 Version 1.6.2
 - pin to the latest version of RPi.GPIO (v.0.7.0)
 

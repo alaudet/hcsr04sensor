@@ -10,13 +10,20 @@ This module also works with the JSN-SR04T waterproof sound sensor.
 
 ## Python3 Install
 
-    sudo apt-get install python3-pip
+Install dependencies;
+
+    sudo apt install python3-pip python3-rpi.gpio
+
+The above installs RPi.GPIO 0.7.0.  If using Raspberry Pi OS (Bullseye) you may prefer to install RPi.GPIO 0.7.1 with Pip. Either one should work.
+
+ To get the latest install it with Pip as follows;
+
+    sudo apt remove python3-rpi.gpio  <--0.7.0
+    sudo pip3 install RPi.GPIO <--0.7.1
+
+Install the hcsr04sensor module
+
     sudo pip3 install hcsr04sensor
-
-## Python2 version of hcsr04sensor no longer supported after January 1 2020
-
-    sudo apt-get install python-pip
-    sudo pip install hcsr04sensor
 
 ## Description
 

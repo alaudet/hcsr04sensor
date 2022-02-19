@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = "1.6.2"
+version = "1.6.3pre"
 
 setup(
     name="hcsr04sensor",
@@ -14,11 +14,9 @@ setup(
         "Intended Audience :: End Users/Desktop",
         "Natural Language :: English",
         "Operating System :: POSIX :: Linux",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.2",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Home Automation",
         "License :: OSI Approved :: MIT License",
     ],
@@ -29,5 +27,4 @@ setup(
     license="MIT License",
     packages=["hcsr04sensor"],
     scripts=["bin/hcsr04.py"],
-    install_requires=["RPi.GPIO==0.7.0"],
 )
