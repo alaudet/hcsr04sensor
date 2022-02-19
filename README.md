@@ -92,23 +92,7 @@ scripts with sudo.
 Added a script that is installed to /usr/local/bin called hcsr04.py.
 This utility does not presently support BOARD pin values.  Use BCM pin values.
 
-    usage: hcsr04.py [-h] -t TRIG -e ECHO [-sp SPEED] [-ss SAMPLES]
-
-    Script tests the HCSR04 sensor under different configurations
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      -t TRIG, --trig TRIG  Trig Pin (Required - must be an integer, must use
-      BCM pin values)
-      -e ECHO, --echo ECHO  Echo Pin (Required - must be an integer, must use
-      BCM pin values)
-      -sp SPEED, --speed SPEED
-                            Time between individual reading samples (Optional -
-                            must be a float, default is 0.1 seconds)
-      -ss SAMPLES, --samples SAMPLES
-                            Reading Sample Size (Optional - must be an integer, default is
-                            11)
-
+usage: hcsr04.py [-h] -t TRIG -e ECHO [-sp SPEED] [-ss SAMPLES]
 
 ## Take a Basic Reading
 
