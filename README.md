@@ -84,8 +84,11 @@ This module is not suitable for long distances.
 
 See example scripts in https://github.com/alaudet/hcsr04sensor/tree/master/recipes
 
-Access to Raspberry Pi GPIO pins require elevated priviledges if using version 0.5.11 of RPi.GPIO.  Run example
-scripts with sudo.
+Access to Raspberry Pi GPIO pins requires the user account to be in the Linux gpio group.
+
+To add your user account name to the gpio group;
+
+    sudo usermod -aG gpio username
 
 ## Testing the Module
 
