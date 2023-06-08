@@ -62,10 +62,10 @@ def main():
     """Main function to run the sensor with passed arguments"""
 
     trig, echo, speed, samples = get_args()
-    print("trig pin = gpio {}".format(trig))
-    print("echo pin = gpio {}".format(echo))
-    print("speed = {}".format(speed))
-    print("samples = {}".format(samples))
+    print(f"trig pin = gpio {trig}")
+    print(f"echo pin = gpio {echo}")
+    print(f"speed = {speed}")
+    print(f"samples = {samples}")
     print("")
 
     value = sensor.Measurement(trig, echo)
@@ -73,8 +73,8 @@ def main():
 
     imperial_distance = value.distance_imperial(raw_distance)
     metric_distance = value.distance_metric(raw_distance)
-    print("The imperial distance is {} inches.".format(round(imperial_distance, 1)))
-    print("The metric distance is {} centimetres.".format(round(metric_distance, 1)))
+    print(f"The imperial distance is {round(imperial_distance, 1)} inches.")
+    print(f"The metric distance is {round(metric_distance, 1)} centimetres.")
 
 
 if __name__ == "__main__":

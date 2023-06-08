@@ -1,12 +1,12 @@
 from setuptools import setup
 
-version = "1.6.3"
+version = "1.6.4.rc1"
 
 setup(
     name="hcsr04sensor",
     version=version,
     description="Module to access the HCSR04 sensor on a Raspberry Pi",
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     long_description=open("./README.md", "r").read(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -14,7 +14,6 @@ setup(
         "Intended Audience :: End Users/Desktop",
         "Natural Language :: English",
         "Operating System :: POSIX :: Linux",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.9",
         "Topic :: Home Automation",
