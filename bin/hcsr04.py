@@ -71,8 +71,9 @@ def main():
     value = sensor.Measurement(trig, echo)
     raw_distance = value.raw_distance(sample_size=samples, sample_wait=speed)
 
-    imperial_distance = value.distance_imperial(raw_distance)
-    metric_distance = value.distance_metric(raw_distance)
+    imperial_distance = value.distance(raw_distance) * 0.394
+    metric_distance = value.distance(raw_distance)
+    print(raw_distance)
     print(f"The imperial distance is {round(imperial_distance, 1)} inches.")
     print(f"The metric distance is {round(metric_distance, 1)} centimetres.")
 

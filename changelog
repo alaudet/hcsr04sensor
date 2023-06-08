@@ -1,5 +1,8 @@
 Changelog
 =========
+Version 1.6.4
+- Update hcsr04.py. Replace depracated methods with new ones.
+- Add unittest for hcsr04.py script
 
 Version 1.6.3
 - Removed RPi.GPIO Install required in setup.py and added apt package install to instructions
