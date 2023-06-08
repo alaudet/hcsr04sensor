@@ -6,7 +6,7 @@ from hcsr04sensor import sensor
 
 def main():
     """Calculate the depth of a liquid in inches using a HCSR04 sensor
-       and a Raspberry Pi"""
+    and a Raspberry Pi"""
 
     trig_pin = 17
     echo_pin = 27

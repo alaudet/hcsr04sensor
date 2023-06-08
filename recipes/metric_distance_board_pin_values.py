@@ -7,7 +7,7 @@ from hcsr04sensor import sensor
 
 def main():
     """Calculate the distance of an object in centimeters using a HCSR04 sensor
-       and a Raspberry Pi"""
+    and a Raspberry Pi"""
     # Use GPIO.BOARD values instead of BCM
     trig_pin = 11
     echo_pin = 13

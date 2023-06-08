@@ -1,4 +1,4 @@
-"""Measure the distance or depth with an HCSR04 Ultrasonic sound 
+"""Measure the distance or depth with an HCSR04 Ultrasonic sound
 sensor and a Raspberry Pi.  Imperial and Metric measurements are available"""
 
 # Al Audet
@@ -12,7 +12,7 @@ import RPi.GPIO as GPIO
 
 
 class Measurement(object):
-    """Create a measurement using a HC-SR04 Ultrasonic Sensor connected to 
+    """Create a measurement using a HC-SR04 Ultrasonic Sensor connected to
     the GPIO pins of a Raspberry Pi.
 
     Metric values are used by default. For imperial values use
@@ -31,7 +31,7 @@ class Measurement(object):
         self.pi = math.pi
 
     def raw_distance(self, sample_size=11, sample_wait=0.1):
-        """Return an error corrected unrounded distance, in cm, of an object 
+        """Return an error corrected unrounded distance, in cm, of an object
         adjusted for temperature in Celcius.  The distance calculated
         is the median value of a sample of `sample_size` readings.
 
@@ -39,7 +39,7 @@ class Measurement(object):
         Speed of readings is a result of two variables.  The sample_size
         per reading and the sample_wait (interval between individual samples).
 
-        Example: To use a sample size of 5 instead of 11 will increase the 
+        Example: To use a sample size of 5 instead of 11 will increase the
         speed of your reading but could increase variance in readings;
 
         value = sensor.Measurement(trig_pin, echo_pin)
@@ -48,7 +48,7 @@ class Measurement(object):
         Adjusting the interval between individual samples can also
         increase the speed of the reading.  Increasing the speed will also
         increase CPU usage.  Setting it too low will cause errors.  A default
-        of sample_wait=0.1 is a good balance between speed and minimizing 
+        of sample_wait=0.1 is a good balance between speed and minimizing
         CPU usage.  It is also a safe setting that should not cause errors.
 
         e.g.
@@ -157,10 +157,10 @@ class Measurement(object):
             length
             * (s_maj_a / s_min_a)
             * (
-                (self.pi * (s_min_a ** 2)) / 2
+                (self.pi * (s_min_a**2)) / 2
                 + (depth - s_min_a)
-                * math.sqrt((s_min_a ** 2) - ((depth - s_min_a) ** 2))
-                + (s_min_a ** 2) * math.asin(depth / s_min_a - 1)
+                * math.sqrt((s_min_a**2) - ((depth - s_min_a) ** 2))
+                + (s_min_a**2) * math.asin(depth / s_min_a - 1)
             )
         )
 

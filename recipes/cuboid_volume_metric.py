@@ -14,4 +14,3 @@ raw_distance = value.raw_distance()
 liquid_depth = value.depth(raw_distance, cuboid_depth)
 volume_litres = value.cuboid_volume(liquid_depth, cuboid_width, cuboid_length)
 print("The liquid volume of the cuboid is {} litres".format(round(volume_litres, 1)))
-

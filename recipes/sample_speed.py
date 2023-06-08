@@ -6,9 +6,9 @@ from hcsr04sensor import sensor
 
 def main():
     """Calculate the distance of an object in centimeters using a HCSR04 sensor
-       and a Raspberry Pi. This script allows for a quicker reading by
-       decreasing the number of samples and forcing the readings to be
-       taken at quicker intervals."""
+    and a Raspberry Pi. This script allows for a quicker reading by
+    decreasing the number of samples and forcing the readings to be
+    taken at quicker intervals."""
 
     trig_pin = 17
     echo_pin = 27
