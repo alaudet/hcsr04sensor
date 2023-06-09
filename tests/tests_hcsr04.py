@@ -34,7 +34,7 @@ class TestHCSR04Sensor(unittest.TestCase):
             f"echo pin = gpio {echo}\n"
             f"speed = {speed}\n"
             f"samples = {samples}\n\n"
-            f"{raw_distance_value}\n"
+            
             "The imperial distance is 5.3 inches.\n"
             "The metric distance is 13.5 centimetres.\n"
         )
