@@ -1,6 +1,6 @@
 Changelog
 =========
-Version 1.6.4
+Version 1.7
 - Update hcsr04.py. Replace depracated methods with new ones.
 - Add unittest for hcsr04.py script
 

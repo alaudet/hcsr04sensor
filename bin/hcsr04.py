@@ -51,10 +51,12 @@ def get_args():
     )
 
     args = parser.parse_args()
+
     trig = args.trig
     echo = args.echo
     speed = args.speed
     samples = args.samples
+
     return trig, echo, speed, samples
 
 
@@ -62,15 +64,14 @@ def main():
     """Main function to run the sensor with passed arguments"""
 
     trig, echo, speed, samples = get_args()
+
     print(f"trig pin = gpio {trig}")
     print(f"echo pin = gpio {echo}")
     print(f"speed = {speed}")
     print(f"samples = {samples}")
     print("")
-
     value = sensor.Measurement(trig, echo)
     raw_distance = value.raw_distance(sample_size=samples, sample_wait=speed)
-
     imperial_distance = value.distance(raw_distance) * 0.394
     metric_distance = value.distance(raw_distance)
     print(raw_distance)
