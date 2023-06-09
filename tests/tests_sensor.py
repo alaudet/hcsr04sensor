@@ -12,16 +12,16 @@ GPIO_MODE = GPIO.BCM
 
 
 class MeasurementTestCase(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        GPIO.setmode(GPIO_MODE)
+
     def setUp(self):
-        self.mode = GPIO.setmode(GPIO_MODE)
         self.metric_value_25 = Measurement(
             TRIG_PIN, ECHO_PIN, 25, "metric", gpio_mode=GPIO_MODE
         )
         self.imperial_value = Measurement(TRIG_PIN, ECHO_PIN, 68, "imperial", GPIO_MODE)
         self.metric_value = Measurement(TRIG_PIN, ECHO_PIN, 20, "metric", GPIO_MODE)
-
-    def tearDown(self):
-        pass
 
     def test_measurement(self):
         """Test that object is being created properly."""
@@ -100,7 +100,6 @@ class MeasurementTestCase(unittest.TestCase):
     def test_basic_distance_bcm(self):
         """Test static method ensuring a float is returned with default,
         positive, and negative temps."""
-        self.mode
         GPIO.setwarnings(False)
         x = Measurement
         basic_reading = x.basic_distance(TRIG_PIN, ECHO_PIN)
@@ -111,7 +110,7 @@ class MeasurementTestCase(unittest.TestCase):
         self.assertIsInstance(basic_reading2, float)
         self.assertIsInstance(basic_reading3, float)
         self.assertIsInstance(basic_reading4, float)
-        GPIO.cleanup((TRIG_PIN, ECHO_PIN))
+        # GPIO.cleanup((TRIG_PIN, ECHO_PIN))
 
     def test_raises_exception_unit(self):
         """Test that a ValueError is raised if user passes invalid unit type"""
@@ -242,3 +241,7 @@ class MeasurementTestCase(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             value.elliptical_side_cylinder_volume(-1, 80, 20, 120)
+
+    @classmethod
+    def tearDownClass(cls):
+        GPIO.cleanup()
