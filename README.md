@@ -106,13 +106,7 @@ See the example basic_reading.py script in https://github.com/alaudet/hcsr04sens
 
 ## Contributing
 
-Contributions to hcsr04sensor are welcome.  Please open an issue in the issue
-tracker prior to a pull request.
-
-New features and bug fixes should be applied against the devel branch and not master. Contributions against the master branch will be rejected.
-
-Nose is currently used for testing.  All tests should pass before issuing
-the pull request.
+Read the contributing guidelines if you are interested in collaborating on this project.
 
 
 ## Donate
