@@ -13,7 +13,7 @@ GPIO_MODE = GPIO.BCM
 
 class MeasurementTestCase(unittest.TestCase):
     def setUp(self):
-        GPIO.setmode(GPIO_MODE)
+        self.mode = GPIO.setmode(GPIO_MODE)
         self.metric_value_25 = Measurement(
             TRIG_PIN, ECHO_PIN, 25, "metric", gpio_mode=GPIO_MODE
         )
@@ -100,7 +100,7 @@ class MeasurementTestCase(unittest.TestCase):
     def test_basic_distance_bcm(self):
         """Test static method ensuring a float is returned with default,
         positive, and negative temps."""
-        GPIO.setmode(GPIO.BCM)
+        self.mode
         GPIO.setwarnings(False)
         x = Measurement
         basic_reading = x.basic_distance(TRIG_PIN, ECHO_PIN)
