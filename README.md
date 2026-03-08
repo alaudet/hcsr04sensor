@@ -1,3 +1,11 @@
+# Announcement
+
+Introducing [Pinsource](https://github.com/alaudet/pinsource)
+
+Pinsource will replace hcsr04sensor in the future and will use lgpio instead of RPi.GPIO and should be compatible with Raspberry Pi 5.  Once released hcsr04sensor will be frozen.  Stay tuned.
+
+Visit the pinsource repo if you would like to test the new module.
+
 # HC-SR04 Ultrasonic Sensor on Raspberry Pi
 
 [Hcsr04sensor Web Page](https://www.linuxnorth.org/hcsr04sensor)
